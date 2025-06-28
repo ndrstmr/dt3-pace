@@ -97,11 +97,37 @@ return [
                 'allowed' => 'tx_dt3pace_domain_model_timeslot',
             ],
         ],
+        'slides' => [
+            'label' => 'Slides',
+            'config' => [
+                'type' => 'inline',
+                'foreign_table' => 'sys_file_reference',
+                'foreign_field' => 'uid_foreign',
+                'foreign_table_field' => 'tablenames',
+                'foreign_match_fields' => [
+                    'fieldname' => 'slides',
+                ],
+                'appearance' => [
+                    'collapseAll' => true,
+                    'useSortable' => false,
+                    'headerThumbnail' => [
+                        'field' => 'uid_local',
+                        'height' => '64c',
+                        'width' => '64c',
+                    ],
+                ],
+                'filter' => [
+                    [
+                        'userFunc' => \TYPO3\CMS\Core\Resource\FileReferenceFilter::class . '::filterInlineChildren',
+                    ],
+                ],
+            ],
+        ],
     ],
     'types' => [
         '0' => [
             'showitem' => '--div--;Allgemein, hidden, title, description, status, votes, is_published,'
-                . '--div--;Relations, proposer, speakers, room, track, time_slot',
+                . '--div--;Relations, proposer, speakers, room, track, time_slot, slides',
         ],
     ],
 ];

@@ -1,0 +1,15 @@
+<f:layout name="Default" />
+<f:section name="Main">
+  <h2>Meine Event-Zusammenfassung</h2>
+  <f:for each="{notes}" as="note">
+    <div class="note-card">
+      <h3>
+        <f:link.action action="show" controller="Session" pluginName="Sessionshow" arguments="{session: note.session}">{note.session.title}</f:link.action>
+      </h3>
+      <f:if condition="{note.session.slides}">
+        <p><a href="{note.session.slides.publicUrl}" target="_blank">Download Slides</a></p>
+      </f:if>
+      <p>{note.noteText}</p>
+    </div>
+  </f:for>
+</f:section>
