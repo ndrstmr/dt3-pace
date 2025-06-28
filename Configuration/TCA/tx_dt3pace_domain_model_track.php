@@ -12,6 +12,9 @@ return [
         ],
         'iconfile' => 'EXT:dt3_pace/Resources/Public/Icons/tx_dt3pace_domain_model_track.svg',
     ],
+    'interface' => [
+        'showRecordFieldList' => 'title',
+    ],
     'columns' => [
         'hidden' => [
             'label' => 'Hidden',
@@ -28,6 +31,8 @@ return [
         ],
     ],
     'types' => [
-        '0' => ['showitem' => 'hidden, title'],
+        '0' => [
+            'showitem' => '--div--;Allgemein, hidden, title',
+        ],
     ],
 ];

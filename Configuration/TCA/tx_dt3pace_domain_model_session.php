@@ -12,6 +12,9 @@ return [
         ],
         'iconfile' => 'EXT:dt3_pace/Resources/Public/Icons/tx_dt3pace_domain_model_session.svg',
     ],
+    'interface' => [
+        'showRecordFieldList' => 'title,status,room,time_slot',
+    ],
     'columns' => [
         'hidden' => [
             'label' => 'Hidden',
@@ -96,6 +99,9 @@ return [
         ],
     ],
     'types' => [
-        '0' => ['showitem' => 'hidden, title, description, status, votes, is_published, proposer, speakers, room, track, time_slot'],
+        '0' => [
+            'showitem' => '--div--;Allgemein, hidden, title, description, status, votes, is_published,'
+                . '--div--;Relations, proposer, speakers, room, track, time_slot',
+        ],
     ],
 ];

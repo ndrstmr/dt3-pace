@@ -1,8 +1,7 @@
-includes:
-    - vendor/typo3/testing-framework/Resources/Core/Build/Configuration/PHPStan/Extension.neon
-
 parameters:
     level: 9
+    bootstrapFiles:
+        - phpstan-bootstrap.php
     paths:
         - Classes
         - Tests

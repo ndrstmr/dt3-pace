@@ -12,6 +12,9 @@ return [
         ],
         'iconfile' => 'EXT:dt3_pace/Resources/Public/Icons/tx_dt3pace_domain_model_vote.svg',
     ],
+    'interface' => [
+        'showRecordFieldList' => 'session,voter',
+    ],
     'columns' => [
         'hidden' => [
             'label' => 'Hidden',
@@ -37,6 +40,8 @@ return [
         ],
     ],
     'types' => [
-        '0' => ['showitem' => 'hidden, session, voter'],
+        '0' => [
+            'showitem' => '--div--;Allgemein, hidden, session, voter',
+        ],
     ],
 ];
