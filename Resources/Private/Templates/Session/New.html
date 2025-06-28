@@ -1,0 +1,10 @@
+<f:layout name="Default" />
+<f:section name="Main">
+  <f:form action="create" object="{newSession}">
+    <label for="title">Title</label>
+    <f:form.textfield property="title" id="title" />
+    <label for="description">Description</label>
+    <f:form.textarea property="description" id="description" />
+    <f:form.submit value="Submit" />
+  </f:form>
+</f:section>

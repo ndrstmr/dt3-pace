@@ -1,0 +1,10 @@
+<f:layout name="Default" />
+<f:section name="Main">
+  <ul>
+    <f:for each="{speakers}" as="speaker">
+      <li>
+        <f:link.action action="show" arguments="{speaker: speaker}">{speaker.name}</f:link.action> - {speaker.company}
+      </li>
+    </f:for>
+  </ul>
+</f:section>

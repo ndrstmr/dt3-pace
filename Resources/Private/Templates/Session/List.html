@@ -1,0 +1,13 @@
+<f:layout name="Default" />
+<f:section name="Main">
+  <f:for each="{sessionsByDay}" as="daySessions" key="day">
+    <h2>{day -> f:format.date(format:'d.m.Y')}</h2>
+    <ul>
+      <f:for each="{daySessions}" as="session">
+        <li>
+          <f:link.action action="show" arguments="{session: session}">{session.title}</f:link.action>
+        </li>
+      </f:for>
+    </ul>
+  </f:for>
+</f:section>

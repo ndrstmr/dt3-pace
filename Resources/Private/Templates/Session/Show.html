@@ -1,0 +1,7 @@
+<f:layout name="Default" />
+<f:section name="Main">
+  <h2>{session.title}</h2>
+  <p>{session.description}</p>
+  <p><strong>Room:</strong> {session.room.name}</p>
+  <p><strong>Time:</strong> {session.timeSlot.start -> f:format.date(format:'H:i')}</p>
+</f:section>

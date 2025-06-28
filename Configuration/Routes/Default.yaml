@@ -1,0 +1,32 @@
+routeEnhancers:
+  Dt3PaceSession:
+    type: Extbase
+    extension: Dt3Pace
+    plugin: Sessionshow
+    routes:
+      - routePath: '/agenda/{session_slug}'
+        _controller: 'Session::show'
+        _arguments:
+          session_slug: session
+    defaultController: 'Session::show'
+    aspects:
+      session_slug:
+        type: PersistedAliasMapper
+        tableName: tx_dt3pace_domain_model_session
+        routeFieldName: slug
+
+  Dt3PaceSpeaker:
+    type: Extbase
+    extension: Dt3Pace
+    plugin: Speakershow
+    routes:
+      - routePath: '/speaker/{speaker_slug}'
+        _controller: 'Speaker::show'
+        _arguments:
+          speaker_slug: speaker
+    defaultController: 'Speaker::show'
+    aspects:
+      speaker_slug:
+        type: PersistedAliasMapper
+        tableName: tx_dt3pace_domain_model_speaker
+        routeFieldName: slug
