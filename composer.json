@@ -1,0 +1,32 @@
+{
+    "name": "ndrstmr/dt3_pace",
+    "description": "PACE - Planning And Conference Engine",
+    "type": "typo3-cms-extension",
+    "license": "GPL-2.0-or-later",
+    "require": {
+        "typo3/cms-core": "^13.4"
+    },
+    "require-dev": {
+        "typo3/testing-framework": "^8.0",
+        "phpunit/phpunit": "^10.0",
+        "phpstan/phpstan": "^1.11",
+        "friendsofphp/php-cs-fixer": "^3.0",
+        "rector/rector": "^0.18.0",
+        "typo3/tailor": "^2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Ndrstmr\\Dt3Pace\\": "Classes/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Ndrstmr\\Dt3Pace\\Tests\\": "Tests/"
+        }
+    },
+    "config": {
+        "platform": {
+            "php": "8.2"
+        }
+    }
+}

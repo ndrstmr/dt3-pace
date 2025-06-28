@@ -1,0 +1,8 @@
+includes:
+    - vendor/typo3/testing-framework/Resources/Core/Build/Configuration/PHPStan/Extension.neon
+
+parameters:
+    level: 9
+    paths:
+        - Classes
+        - Tests
