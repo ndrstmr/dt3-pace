@@ -13,8 +13,8 @@ use Ndrstmr\Dt3Pace\Domain\Repository\TimeSlotRepository;
 use Ndrstmr\Dt3Pace\Domain\Repository\VoteRepository;
 use TYPO3\CMS\Core\Http\JsonResponse;
 use TYPO3\CMS\Extbase\Annotation\IgnoreValidation;
-use TYPO3\CMS\Extbase\Domain\Model\FrontendUser;
-use TYPO3\CMS\Extbase\Domain\Repository\FrontendUserRepository;
+use Ndrstmr\Dt3Pace\Domain\Model\FrontendUser;
+use Ndrstmr\Dt3Pace\Domain\Repository\FrontendUserRepository;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
 

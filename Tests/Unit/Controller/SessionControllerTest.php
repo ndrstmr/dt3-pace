@@ -14,17 +14,40 @@ use Ndrstmr\Dt3Pace\Domain\Repository\TimeSlotRepository;
 use Ndrstmr\Dt3Pace\Domain\Repository\VoteRepository;
 use PHPUnit\Framework\TestCase;
 use TYPO3\CMS\Core\Http\JsonResponse;
-use TYPO3\CMS\Extbase\Domain\Model\FrontendUser;
-use TYPO3\CMS\Extbase\Domain\Repository\FrontendUserRepository;
+use Ndrstmr\Dt3Pace\Domain\Model\FrontendUser;
+use Ndrstmr\Dt3Pace\Domain\Repository\FrontendUserRepository;
 use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
+use Psr\Http\Message\ResponseInterface;
+use TYPO3\CMS\Core\Http\JsonResponse as CoreJsonResponse;
+
+class TestableSessionController extends SessionController
+{
+    protected function redirect(
+        ?string $actionName,
+        ?string $controllerName = null,
+        ?string $extensionName = null,
+        ?array $arguments = null,
+        ?int $pageUid = null,
+        $_ = null,
+        int $statusCode = 303
+    ): ResponseInterface {
+        // Avoid accessing request during unit tests
+        return new CoreJsonResponse(null, $statusCode);
+    }
+}
 
 class SessionControllerTest extends TestCase
 {
     protected function setUp(): void
     {
-        $GLOBALS['TSFE'] = new class {
+        $GLOBALS['TSFE'] = new class () {
             public $fe_user;
-            public function __construct() { $this->fe_user = new class { public $user = ['uid' => 1]; }; }
+            public function __construct()
+            {
+                $this->fe_user = new class () {
+                    public $user = ['uid' => 1];
+                };
+            }
         };
     }
 
@@ -44,7 +67,7 @@ class SessionControllerTest extends TestCase
         $sessionRepository->expects($this->once())->method('add')->with($session);
         $persistenceManager->expects($this->once())->method('persistAll');
 
-        $controller = new SessionController($sessionRepository, $voteRepository, $roomRepository, $slotRepository, $frontendUserRepository, $persistenceManager);
+        $controller = new TestableSessionController($sessionRepository, $voteRepository, $roomRepository, $slotRepository, $frontendUserRepository, $persistenceManager);
         $controller->createAction($session);
 
         $this->assertSame(SessionStatus::PROPOSED, $session->getStatus());
@@ -72,7 +95,7 @@ class SessionControllerTest extends TestCase
         $sessionRepository->expects($this->once())->method('update')->with($session);
         $persistenceManager->expects($this->once())->method('persistAll');
 
-        $controller = new SessionController($sessionRepository, $voteRepository, $roomRepository, $slotRepository, $frontendUserRepository, $persistenceManager);
+        $controller = new TestableSessionController($sessionRepository, $voteRepository, $roomRepository, $slotRepository, $frontendUserRepository, $persistenceManager);
         $response = $controller->voteAction(5);
 
         $this->assertInstanceOf(JsonResponse::class, $response);

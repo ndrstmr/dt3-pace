@@ -1,0 +1,256 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Attribute class TYPO3\\\\CMS\\\\Extbase\\\\Annotation\\\\Access does not exist\\.$#"
+			count: 2
+			path: Classes/Controller/SchedulerController.php
+
+		-
+			message: "#^Call to an undefined method TYPO3\\\\CMS\\\\Extbase\\\\DomainObject\\\\DomainObjectInterface\\:\\:setRoom\\(\\)\\.$#"
+			count: 1
+			path: Classes/Controller/SchedulerController.php
+
+		-
+			message: "#^Call to an undefined method TYPO3\\\\CMS\\\\Extbase\\\\DomainObject\\\\DomainObjectInterface\\:\\:setStatus\\(\\)\\.$#"
+			count: 1
+			path: Classes/Controller/SchedulerController.php
+
+		-
+			message: "#^Call to an undefined method TYPO3\\\\CMS\\\\Extbase\\\\DomainObject\\\\DomainObjectInterface\\:\\:setTimeSlot\\(\\)\\.$#"
+			count: 1
+			path: Classes/Controller/SchedulerController.php
+
+		-
+			message: "#^Call to method assign\\(\\) on an unknown class TYPO3\\\\CMS\\\\Extbase\\\\Mvc\\\\View\\\\ViewInterface\\.$#"
+			count: 3
+			path: Classes/Controller/SchedulerController.php
+
+		-
+			message: "#^Parameter \\$view of method Ndrstmr\\\\Dt3Pace\\\\Controller\\\\SchedulerController\\:\\:initializeView\\(\\) has invalid type TYPO3\\\\CMS\\\\Extbase\\\\Mvc\\\\View\\\\ViewInterface\\.$#"
+			count: 1
+			path: Classes/Controller/SchedulerController.php
+
+		-
+			message: "#^Call to an undefined method TYPO3\\\\CMS\\\\Extbase\\\\DomainObject\\\\DomainObjectInterface\\:\\:addVote\\(\\)\\.$#"
+			count: 1
+			path: Classes/Controller/SessionController.php
+
+		-
+			message: "#^Call to an undefined method TYPO3\\\\CMS\\\\Extbase\\\\DomainObject\\\\DomainObjectInterface\\:\\:getVotes\\(\\)\\.$#"
+			count: 1
+			path: Classes/Controller/SessionController.php
+
+		-
+			message: "#^Method Ndrstmr\\\\Dt3Pace\\\\Controller\\\\SessionController\\:\\:getCurrentFrontendUser\\(\\) should return Ndrstmr\\\\Dt3Pace\\\\Domain\\\\Model\\\\FrontendUser\\|null but returns TYPO3\\\\CMS\\\\Extbase\\\\DomainObject\\\\DomainObjectInterface\\|null\\.$#"
+			count: 1
+			path: Classes/Controller/SessionController.php
+
+		-
+			message: "#^Parameter \\#1 \\$session of method Ndrstmr\\\\Dt3Pace\\\\Domain\\\\Model\\\\Vote\\:\\:setSession\\(\\) expects Ndrstmr\\\\Dt3Pace\\\\Domain\\\\Model\\\\Session\\|null, TYPO3\\\\CMS\\\\Extbase\\\\DomainObject\\\\DomainObjectInterface given\\.$#"
+			count: 1
+			path: Classes/Controller/SessionController.php
+
+		-
+			message: "#^Parameter \\#1 \\$session of method Ndrstmr\\\\Dt3Pace\\\\Domain\\\\Repository\\\\VoteRepository\\:\\:findOneBySessionAndVoter\\(\\) expects Ndrstmr\\\\Dt3Pace\\\\Domain\\\\Model\\\\Session, TYPO3\\\\CMS\\\\Extbase\\\\DomainObject\\\\DomainObjectInterface given\\.$#"
+			count: 1
+			path: Classes/Controller/SessionController.php
+
+		-
+			message: "#^Parameter \\#1 \\$values of attribute class TYPO3\\\\CMS\\\\Extbase\\\\Annotation\\\\IgnoreValidation constructor expects array\\{value\\?\\: non\\-empty\\-string, argumentName\\?\\: non\\-empty\\-string\\}, 'session' given\\.$#"
+			count: 1
+			path: Classes/Controller/SessionController.php
+
+		-
+			message: "#^Parameter \\#1 \\$values of attribute class TYPO3\\\\CMS\\\\Extbase\\\\Annotation\\\\IgnoreValidation constructor expects array\\{value\\?\\: non\\-empty\\-string, argumentName\\?\\: non\\-empty\\-string\\}, 'speaker' given\\.$#"
+			count: 1
+			path: Classes/Controller/SpeakerController.php
+
+		-
+			message: "#^Attribute class Doctrine\\\\ORM\\\\Mapping\\\\Entity does not exist\\.$#"
+			count: 1
+			path: Classes/Domain/Model/FrontendUser.php
+
+		-
+			message: "#^Attribute class Doctrine\\\\ORM\\\\Mapping\\\\Table does not exist\\.$#"
+			count: 1
+			path: Classes/Domain/Model/FrontendUser.php
+
+		-
+			message: "#^Attribute class Doctrine\\\\ORM\\\\Mapping\\\\Column does not exist\\.$#"
+			count: 2
+			path: Classes/Domain/Model/Room.php
+
+		-
+			message: "#^Attribute class Doctrine\\\\ORM\\\\Mapping\\\\Entity does not exist\\.$#"
+			count: 1
+			path: Classes/Domain/Model/Room.php
+
+		-
+			message: "#^Attribute class Doctrine\\\\ORM\\\\Mapping\\\\Table does not exist\\.$#"
+			count: 1
+			path: Classes/Domain/Model/Room.php
+
+		-
+			message: "#^Attribute class Doctrine\\\\ORM\\\\Mapping\\\\Column does not exist\\.$#"
+			count: 5
+			path: Classes/Domain/Model/Session.php
+
+		-
+			message: "#^Attribute class Doctrine\\\\ORM\\\\Mapping\\\\Entity does not exist\\.$#"
+			count: 1
+			path: Classes/Domain/Model/Session.php
+
+		-
+			message: "#^Attribute class Doctrine\\\\ORM\\\\Mapping\\\\ManyToMany does not exist\\.$#"
+			count: 1
+			path: Classes/Domain/Model/Session.php
+
+		-
+			message: "#^Attribute class Doctrine\\\\ORM\\\\Mapping\\\\ManyToOne does not exist\\.$#"
+			count: 4
+			path: Classes/Domain/Model/Session.php
+
+		-
+			message: "#^Attribute class Doctrine\\\\ORM\\\\Mapping\\\\Table does not exist\\.$#"
+			count: 1
+			path: Classes/Domain/Model/Session.php
+
+		-
+			message: "#^Attribute class Doctrine\\\\ORM\\\\Mapping\\\\Column does not exist\\.$#"
+			count: 4
+			path: Classes/Domain/Model/Speaker.php
+
+		-
+			message: "#^Attribute class Doctrine\\\\ORM\\\\Mapping\\\\Entity does not exist\\.$#"
+			count: 1
+			path: Classes/Domain/Model/Speaker.php
+
+		-
+			message: "#^Attribute class Doctrine\\\\ORM\\\\Mapping\\\\ManyToOne does not exist\\.$#"
+			count: 1
+			path: Classes/Domain/Model/Speaker.php
+
+		-
+			message: "#^Attribute class Doctrine\\\\ORM\\\\Mapping\\\\Table does not exist\\.$#"
+			count: 1
+			path: Classes/Domain/Model/Speaker.php
+
+		-
+			message: "#^Attribute class Doctrine\\\\ORM\\\\Mapping\\\\Column does not exist\\.$#"
+			count: 2
+			path: Classes/Domain/Model/TimeSlot.php
+
+		-
+			message: "#^Attribute class Doctrine\\\\ORM\\\\Mapping\\\\Entity does not exist\\.$#"
+			count: 1
+			path: Classes/Domain/Model/TimeSlot.php
+
+		-
+			message: "#^Attribute class Doctrine\\\\ORM\\\\Mapping\\\\Table does not exist\\.$#"
+			count: 1
+			path: Classes/Domain/Model/TimeSlot.php
+
+		-
+			message: "#^Attribute class Doctrine\\\\ORM\\\\Mapping\\\\Column does not exist\\.$#"
+			count: 1
+			path: Classes/Domain/Model/Track.php
+
+		-
+			message: "#^Attribute class Doctrine\\\\ORM\\\\Mapping\\\\Entity does not exist\\.$#"
+			count: 1
+			path: Classes/Domain/Model/Track.php
+
+		-
+			message: "#^Attribute class Doctrine\\\\ORM\\\\Mapping\\\\Table does not exist\\.$#"
+			count: 1
+			path: Classes/Domain/Model/Track.php
+
+		-
+			message: "#^Attribute class Doctrine\\\\ORM\\\\Mapping\\\\Entity does not exist\\.$#"
+			count: 1
+			path: Classes/Domain/Model/Vote.php
+
+		-
+			message: "#^Attribute class Doctrine\\\\ORM\\\\Mapping\\\\ManyToOne does not exist\\.$#"
+			count: 2
+			path: Classes/Domain/Model/Vote.php
+
+		-
+			message: "#^Attribute class Doctrine\\\\ORM\\\\Mapping\\\\Table does not exist\\.$#"
+			count: 1
+			path: Classes/Domain/Model/Vote.php
+
+		-
+			message: "#^Instantiated class Doctrine\\\\ORM\\\\Mapping\\\\UniqueConstraint not found\\.$#"
+			count: 1
+			path: Classes/Domain/Model/Vote.php
+
+		-
+			message: "#^Class Ndrstmr\\\\Dt3Pace\\\\Domain\\\\Repository\\\\FrontendUserRepository extends generic class TYPO3\\\\CMS\\\\Extbase\\\\Persistence\\\\Repository but does not specify its types\\: T$#"
+			count: 1
+			path: Classes/Domain/Repository/FrontendUserRepository.php
+
+		-
+			message: "#^Class Ndrstmr\\\\Dt3Pace\\\\Domain\\\\Repository\\\\RoomRepository extends generic class TYPO3\\\\CMS\\\\Extbase\\\\Persistence\\\\Repository but does not specify its types\\: T$#"
+			count: 1
+			path: Classes/Domain/Repository/RoomRepository.php
+
+		-
+			message: "#^Class Ndrstmr\\\\Dt3Pace\\\\Domain\\\\Repository\\\\SessionRepository extends generic class TYPO3\\\\CMS\\\\Extbase\\\\Persistence\\\\Repository but does not specify its types\\: T$#"
+			count: 1
+			path: Classes/Domain/Repository/SessionRepository.php
+
+		-
+			message: "#^Method Ndrstmr\\\\Dt3Pace\\\\Domain\\\\Repository\\\\SessionRepository\\:\\:findProposed\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Classes/Domain/Repository/SessionRepository.php
+
+		-
+			message: "#^Method Ndrstmr\\\\Dt3Pace\\\\Domain\\\\Repository\\\\SessionRepository\\:\\:findProposedOrUnscheduled\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Classes/Domain/Repository/SessionRepository.php
+
+		-
+			message: "#^Method Ndrstmr\\\\Dt3Pace\\\\Domain\\\\Repository\\\\SessionRepository\\:\\:findPublishedAndScheduled\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Classes/Domain/Repository/SessionRepository.php
+
+		-
+			message: "#^Class Ndrstmr\\\\Dt3Pace\\\\Domain\\\\Repository\\\\SpeakerRepository extends generic class TYPO3\\\\CMS\\\\Extbase\\\\Persistence\\\\Repository but does not specify its types\\: T$#"
+			count: 1
+			path: Classes/Domain/Repository/SpeakerRepository.php
+
+		-
+			message: "#^Class Ndrstmr\\\\Dt3Pace\\\\Domain\\\\Repository\\\\TimeSlotRepository extends generic class TYPO3\\\\CMS\\\\Extbase\\\\Persistence\\\\Repository but does not specify its types\\: T$#"
+			count: 1
+			path: Classes/Domain/Repository/TimeSlotRepository.php
+
+		-
+			message: "#^Class Ndrstmr\\\\Dt3Pace\\\\Domain\\\\Repository\\\\VoteRepository extends generic class TYPO3\\\\CMS\\\\Extbase\\\\Persistence\\\\Repository but does not specify its types\\: T$#"
+			count: 1
+			path: Classes/Domain/Repository/VoteRepository.php
+
+		-
+			message: "#^Cannot access offset 'success' on mixed\\.$#"
+			count: 1
+			path: Tests/Unit/Controller/SessionControllerTest.php
+
+		-
+			message: "#^Cannot access offset 'votes' on mixed\\.$#"
+			count: 1
+			path: Tests/Unit/Controller/SessionControllerTest.php
+
+		-
+			message: "#^Method Ndrstmr\\\\Dt3Pace\\\\Tests\\\\Unit\\\\Controller\\\\TestableSessionController\\:\\:redirect\\(\\) has parameter \\$arguments with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Tests/Unit/Controller/SessionControllerTest.php
+
+		-
+			message: "#^Property class@anonymous/Tests/Unit/Controller/SessionControllerTest\\.php\\:44\\:\\:\\$fe_user has no type specified\\.$#"
+			count: 1
+			path: Tests/Unit/Controller/SessionControllerTest.php
+
+		-
+			message: "#^Property class@anonymous/Tests/Unit/Controller/SessionControllerTest\\.php\\:46\\:\\:\\$user has no type specified\\.$#"
+			count: 1
+			path: Tests/Unit/Controller/SessionControllerTest.php

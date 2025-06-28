@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Ndrstmr\Dt3Pace\Domain\Model;
@@ -6,7 +7,7 @@ namespace Ndrstmr\Dt3Pace\Domain\Model;
 use Doctrine\ORM\Mapping as ORM;
 use TYPO3\CMS\Extbase\Domain\Model\AbstractEntity;
 use TYPO3\CMS\Extbase\Domain\Model\FileReference;
-use TYPO3\CMS\Extbase\Domain\Model\FrontendUser;
+use Ndrstmr\Dt3Pace\Domain\Model\FrontendUser;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
 /**

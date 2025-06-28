@@ -6,6 +6,6 @@ namespace Ndrstmr\Dt3Pace\Domain\Repository;
 
 use TYPO3\CMS\Extbase\Persistence\Repository;
 
-class SpeakerRepository extends Repository
+class FrontendUserRepository extends Repository
 {
 }

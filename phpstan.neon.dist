@@ -5,3 +5,5 @@ parameters:
     paths:
         - Classes
         - Tests
+includes:
+    - phpstan-baseline.neon

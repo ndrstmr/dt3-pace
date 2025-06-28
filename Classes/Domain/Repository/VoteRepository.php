@@ -1,10 +1,11 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Ndrstmr\Dt3Pace\Domain\Repository;
 
 use Ndrstmr\Dt3Pace\Domain\Model\Session;
-use TYPO3\CMS\Extbase\Domain\Model\FrontendUser;
+use Ndrstmr\Dt3Pace\Domain\Model\FrontendUser;
 use TYPO3\CMS\Extbase\Persistence\Repository;
 
 class VoteRepository extends Repository

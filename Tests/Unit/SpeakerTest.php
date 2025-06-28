@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Ndrstmr\Dt3Pace\Tests\Unit;
