@@ -70,6 +70,9 @@ class Session extends AbstractEntity
     #[ORM\ManyToOne(targetEntity: TimeSlot::class)]
     protected ?TimeSlot $timeSlot = null;
 
+    #[ORM\OneToOne(targetEntity: \TYPO3\CMS\Core\Resource\FileReference::class, cascade: ['persist', 'remove'])]
+    protected ?\TYPO3\CMS\Core\Resource\FileReference $slides = null;
+
     public function __construct()
     {
         $this->speakers = new ObjectStorage();
@@ -181,5 +184,15 @@ class Session extends AbstractEntity
     public function setTimeSlot(?TimeSlot $timeSlot): void
     {
         $this->timeSlot = $timeSlot;
+    }
+
+    public function getSlides(): ?\TYPO3\CMS\Core\Resource\FileReference
+    {
+        return $this->slides;
+    }
+
+    public function setSlides(?\TYPO3\CMS\Core\Resource\FileReference $slides): void
+    {
+        $this->slides = $slides;
     }
 }

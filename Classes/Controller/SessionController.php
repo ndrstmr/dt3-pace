@@ -11,6 +11,7 @@ use Ndrstmr\Dt3Pace\Domain\Repository\RoomRepository;
 use Ndrstmr\Dt3Pace\Domain\Repository\SessionRepository;
 use Ndrstmr\Dt3Pace\Domain\Repository\TimeSlotRepository;
 use Ndrstmr\Dt3Pace\Domain\Repository\VoteRepository;
+use Ndrstmr\Dt3Pace\Domain\Repository\NoteRepository;
 use TYPO3\CMS\Core\Http\JsonResponse;
 use TYPO3\CMS\Extbase\Annotation\IgnoreValidation;
 use Ndrstmr\Dt3Pace\Domain\Model\FrontendUser;
@@ -26,7 +27,8 @@ class SessionController extends ActionController
         private readonly RoomRepository $roomRepository,
         private readonly TimeSlotRepository $timeSlotRepository,
         private readonly FrontendUserRepository $frontendUserRepository,
-        private readonly PersistenceManager $persistenceManager
+        private readonly PersistenceManager $persistenceManager,
+        private readonly NoteRepository $noteRepository
     ) {
     }
 
@@ -63,7 +65,16 @@ class SessionController extends ActionController
     #[IgnoreValidation('session')]
     public function showAction(Session $session): void
     {
-        $this->view->assign('session', $session);
+        $user = $this->getCurrentFrontendUser();
+        $note = null;
+        if ($user !== null) {
+            $note = $this->noteRepository->findOneByUserAndSession($user, $session);
+        }
+        $this->view->assignMultiple([
+            'session' => $session,
+            'note' => $note,
+            'isLoggedIn' => $user !== null,
+        ]);
     }
 
     public function newAction(): void

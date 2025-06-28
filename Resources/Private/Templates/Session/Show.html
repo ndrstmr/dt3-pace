@@ -4,4 +4,15 @@
   <p>{session.description}</p>
   <p><strong>Room:</strong> {session.room.name}</p>
   <p><strong>Time:</strong> {session.timeSlot.start -> f:format.date(format:'H:i')}</p>
+  <f:if condition="{session.slides}">
+    <p>
+      <a href="{session.slides.publicUrl}" target="_blank">Download Slides</a>
+    </p>
+  </f:if>
+
+  <f:if condition="{isLoggedIn}">
+    <h3>Meine Notizen</h3>
+    <textarea id="session-note" data-session="{session.uid}" rows="6">{note.noteText}</textarea>
+    <f:asset.script identifier="note-js" src="EXT:dt3_pace/Resources/Public/JavaScript/Note.js" />
+  </f:if>
 </f:section>
