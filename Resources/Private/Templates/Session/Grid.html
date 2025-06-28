@@ -1,0 +1,28 @@
+<f:layout name="Default" />
+<f:section name="Main">
+<table id="session-grid" border="1">
+  <thead>
+    <tr>
+      <th>&nbsp;</th>
+      <f:for each="{rooms}" as="room">
+        <th>{room.name}</th>
+      </f:for>
+    </tr>
+  </thead>
+  <tbody>
+    <f:for each="{timeSlots}" as="slot">
+      <tr data-slot="{slot.uid}">
+        <th>{slot.start -> f:format.date(format:'H:i')} - {slot.end -> f:format.date(format:'H:i')}</th>
+        <f:for each="{rooms}" as="room">
+          <td data-room="{room.uid}">
+            <f:if condition="{grid.{slot.uid}.{room.uid}}">
+              {grid.{slot.uid}.{room.uid}.title}
+            </f:if>
+          </td>
+        </f:for>
+      </tr>
+    </f:for>
+  </tbody>
+</table>
+<f:asset.script identifier="grid-js" src="EXT:dt3_pace/Resources/Public/JavaScript/Grid.js" />
+</f:section>

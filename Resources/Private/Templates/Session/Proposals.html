@@ -1,0 +1,12 @@
+<f:layout name="Default" />
+<f:section name="Main">
+  <ul>
+    <f:for each="{sessions}" as="session">
+      <li>
+        {session.title} - {session.votes} votes
+        <button class="vote" data-session="{session.uid}">Vote</button>
+      </li>
+    </f:for>
+  </ul>
+  <f:asset.script identifier="proposal-js" src="EXT:dt3_pace/Resources/Public/JavaScript/Vote.js" />
+</f:section>
