@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages" date="2024-01-01T00:00:00Z">
+    <body>
+      <trans-unit id="module.main" xml:space="preserve">
+        <source>DT3-PACE</source>
+      </trans-unit>
+      <trans-unit id="module.sessions" xml:space="preserve">
+        <source>Sessions</source>
+      </trans-unit>
+      <trans-unit id="module.speakers" xml:space="preserve">
+        <source>Speakers</source>
+      </trans-unit>
+      <trans-unit id="module.management" xml:space="preserve">
+        <source>Management</source>
+      </trans-unit>
+      <trans-unit id="module.scheduler" xml:space="preserve">
+        <source>Scheduler</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

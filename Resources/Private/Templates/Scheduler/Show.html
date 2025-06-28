@@ -1,0 +1,32 @@
+<f:layout name="Default" />
+<f:section name="Main">
+<div id="session-pool">
+  <h3>Session Pool</h3>
+  <ul>
+    <f:for each="{sessions}" as="session">
+      <li data-session-id="{session.uid}">{session.title}</li>
+    </f:for>
+  </ul>
+</div>
+<table id="schedule-grid" border="1">
+  <thead>
+    <tr>
+      <th>&nbsp;</th>
+      <f:for each="{rooms}" as="room">
+        <th>{room.name}</th>
+      </f:for>
+    </tr>
+  </thead>
+  <tbody>
+    <f:for each="{timeSlots}" as="slot">
+      <tr>
+        <th>{slot.start -> f:format.date(format:'H:i')} - {slot.end -> f:format.date(format:'H:i')}</th>
+        <f:for each="{rooms}" as="room">
+          <td data-room-id="{room.uid}" data-timeslot-id="{slot.uid}"></td>
+        </f:for>
+      </tr>
+    </f:for>
+  </tbody>
+</table>
+<f:asset.script identifier="scheduler-js" src="EXT:dt3_pace/Resources/Public/JavaScript/Scheduler.js" />
+</f:section>

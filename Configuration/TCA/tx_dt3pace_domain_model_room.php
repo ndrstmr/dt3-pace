@@ -12,6 +12,9 @@ return [
         ],
         'iconfile' => 'EXT:dt3_pace/Resources/Public/Icons/tx_dt3pace_domain_model_room.svg',
     ],
+    'interface' => [
+        'showRecordFieldList' => 'name,capacity',
+    ],
     'columns' => [
         'hidden' => [
             'label' => 'Hidden',
@@ -35,6 +38,8 @@ return [
         ],
     ],
     'types' => [
-        '0' => ['showitem' => 'hidden, name, capacity'],
+        '0' => [
+            'showitem' => '--div--;Allgemein, hidden, name, capacity',
+        ],
     ],
 ];

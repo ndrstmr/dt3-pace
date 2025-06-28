@@ -12,6 +12,9 @@ return [
         ],
         'iconfile' => 'EXT:dt3_pace/Resources/Public/Icons/tx_dt3pace_domain_model_timeslot.svg',
     ],
+    'interface' => [
+        'showRecordFieldList' => 'start,end',
+    ],
     'columns' => [
         'hidden' => [
             'label' => 'Hidden',
@@ -34,7 +37,14 @@ return [
             ],
         ],
     ],
+    'palettes' => [
+        'times' => [
+            'showitem' => 'start, end',
+        ],
+    ],
     'types' => [
-        '0' => ['showitem' => 'hidden, start, end'],
+        '0' => [
+            'showitem' => '--div--;Allgemein, hidden, --palette--;;times',
+        ],
     ],
 ];
