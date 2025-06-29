@@ -32,3 +32,14 @@ SQL statements after installing the extension::
 
 When using Doctrine migrations call ``bin/typo3cms doctrine:migrations:diff``
 after updating the entities and apply the generated migration.
+
+Scheduler Permissions
+=====================
+
+Only backend users with sufficient permissions should access the scheduler
+module. By default the module requires admin privileges. You can change this
+via the extension configuration::
+
+    $GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['dt3_pace']['schedulerModuleAccess'] = 'user,group';
+
+Assign the module to specific backend groups after adjusting the access value.
