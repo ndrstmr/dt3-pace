@@ -96,4 +96,8 @@ Nach jedem Sprint wird ein Review durchgeführt. Deine Aufgabe kann es sein, ein
 * **[Datum] - [Sprint X] - Entscheidung:** ...
 * **[Datum] - [Sprint X] - Abschluss:** Sprint X ist abgeschlossen. Alle DoD-Kriterien sind erfüllt. Starte Review-Prozess.
 
+## 9. Architekturentscheidungen
+
+Alle wesentlichen Architekturentscheidungen werden als sogenannte Architecture Decision Records (ADRs) im Verzeichnis `Documentation/adr/` festgehalten. Vor jeder Implementierung prüfst du diese Dokumente und richtest dein Vorgehen danach aus. Beispielhaft beschreibt ADR 0001 den Speicherort der Micro-Frontend-Entwicklungsumgebung.
+
 ---
