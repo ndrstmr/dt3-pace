@@ -23,6 +23,7 @@ use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
 use Psr\EventDispatcher\EventDispatcherInterface;
 use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Core\Http\JsonResponse as CoreJsonResponse;
+use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 
 class TestableSessionProposalController extends SessionProposalController
 {
@@ -126,5 +127,35 @@ class SessionControllerTest extends TestCase
         $payload = json_decode((string)$response->getBody(), true, 512, JSON_THROW_ON_ERROR);
         $this->assertTrue($payload['success']);
         $this->assertSame(1, $payload['votes']);
+    }
+
+    public function testVoteActionHandlesDuplicateVoteException(): void
+    {
+        $session = new Session();
+        $session->_setProperty('uid', 5);
+        $sessionRepository = $this->createMock(SessionRepository::class);
+        $voteRepository = $this->createMock(VoteRepository::class);
+        $frontendUserProvider = $this->createMock(FrontendUserProvider::class);
+        $persistenceManager = $this->createMock(PersistenceManager::class);
+        $eventDispatcher = $this->createMock(EventDispatcherInterface::class);
+
+        $user = new FrontendUser();
+        $user->_setProperty('uid', 1);
+        $frontendUserProvider->method('getCurrentFrontendUser')->willReturn($user);
+        $sessionRepository->method('findByUid')->willReturn($session);
+        $voteRepository->method('findOneBySessionAndVoter')->willReturn(null);
+
+        $voteRepository->expects($this->once())->method('add');
+        $sessionRepository->expects($this->once())->method('update')->with($session);
+        $driverException = new class ('error') extends \Doctrine\DBAL\Driver\AbstractException {};
+        $persistenceManager->method('persistAll')->willThrowException(new UniqueConstraintViolationException($driverException, null));
+
+        $controller = new TestableSessionVoteController($sessionRepository, $voteRepository, $frontendUserProvider, $persistenceManager, $eventDispatcher);
+        $response = $controller->voteAction(5);
+
+        $this->assertInstanceOf(JsonResponse::class, $response);
+        /** @var array{success: bool} $payload */
+        $payload = json_decode((string)$response->getBody(), true, 512, JSON_THROW_ON_ERROR);
+        $this->assertFalse($payload['success']);
     }
 }
