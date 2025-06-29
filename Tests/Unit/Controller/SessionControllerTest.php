@@ -90,10 +90,18 @@ class SessionControllerTest extends TestCase
             ->setReceivedRequestToken(RequestToken::create('test'));
         GeneralUtility::setSingletonInstance(Context::class, $this->context);
 
-        $this->mockConnection = new class {
-            public function beginTransaction(): void {}
-            public function commit(): void {}
-            public function rollBack(): void {}
+        $this->mockConnection = new class () {
+            public function beginTransaction(): void
+            {
+            }
+
+            public function commit(): void
+            {
+            }
+
+            public function rollBack(): void
+            {
+            }
         };
 
         $this->connectionPool = $this->createMock(ConnectionPool::class);
@@ -208,7 +216,8 @@ class SessionControllerTest extends TestCase
 
         $voteRepository->expects($this->once())->method('add');
         $sessionRepository->expects($this->once())->method('update')->with($session);
-        $driverException = new class ('error') extends \Doctrine\DBAL\Driver\AbstractException {};
+        $driverException = new class('error') extends \Doctrine\DBAL\Driver\AbstractException {
+        };
         $persistenceManager->method('persistAll')->willThrowException(new UniqueConstraintViolationException($driverException, null));
 
         $controller = new TestableSessionVoteController($sessionRepository, $voteRepository, $frontendUserProvider, $persistenceManager, $eventDispatcher);
@@ -244,7 +253,8 @@ class SessionControllerTest extends TestCase
         $persistenceManager->method('persistAll')->willReturnCallback(static function () use (&$callCount) {
             ++$callCount;
             if ($callCount === 2) {
-                $driverException = new class ('error') extends \Doctrine\DBAL\Driver\AbstractException {};
+                $driverException = new class('error') extends \Doctrine\DBAL\Driver\AbstractException {
+                };
                 throw new UniqueConstraintViolationException($driverException, null);
             }
             return null;
