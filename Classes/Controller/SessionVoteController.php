@@ -13,6 +13,7 @@ use Ndrstmr\Dt3Pace\Event\AfterVoteAddedEvent;
 use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Context\SecurityAspect;
 use TYPO3\CMS\Core\Security\RequestToken;
+use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Http\JsonResponse;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
@@ -53,11 +54,16 @@ class SessionVoteController extends ActionController
         $vote = new Vote();
         $vote->setSession($sessionObj);
         $vote->setVoter($user);
-        $this->voteRepository->add($vote);
-        $sessionObj->addVote();
-        $this->sessionRepository->update($sessionObj);
-        $this->persistenceManager->persistAll();
-        $this->eventDispatcher->dispatch(new AfterVoteAddedEvent($vote));
+
+        try {
+            $this->voteRepository->add($vote);
+            $sessionObj->addVote();
+            $this->sessionRepository->update($sessionObj);
+            $this->persistenceManager->persistAll();
+            $this->eventDispatcher->dispatch(new AfterVoteAddedEvent($vote));
+        } catch (UniqueConstraintViolationException $e) {
+            return new JsonResponse(['success' => false, 'message' => 'already voted'], 400);
+        }
 
         return new JsonResponse(['success' => true, 'votes' => $sessionObj->getVotes()]);
     }
