@@ -1,11 +1,3 @@
-Absolut. Die Erstellung einer `AGENTS.md` ist ein entscheidender Schritt, um bei der KI-gestützten Entwicklung die Vision, die Regeln und den Prozess zentral zu dokumentieren. Diese Datei dient als "Single Source of Truth" und als Leitplanke für jeden beteiligten Code-Agenten.
-
-Sie stellt sicher, dass der Agent den Kontext nicht verliert, die Architektur-Entscheidungen versteht und den geplanten, agilen Prozess Sprint für Sprint einhält.
-
-Hier ist ein umfassendes Markdown-File, das als `AGENTS.md` für das `DT3-PACE` Projekt dient. Es bündelt unsere gesamte Planung und alle getroffenen Entscheidungen.
-
----
-
 # AGENTS.MD: Master-Anleitung für die Entwicklung von DT3-PACE
 
 ## 1. Mission & Rolle des Agenten
