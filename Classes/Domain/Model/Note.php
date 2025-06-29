@@ -6,6 +6,7 @@ namespace Ndrstmr\Dt3Pace\Domain\Model;
 
 use Doctrine\ORM\Mapping as ORM;
 use TYPO3\CMS\Extbase\Domain\Model\AbstractEntity;
+use Ndrstmr\Dt3Pace\Domain\Model\FrontendUser;
 
 #[ORM\Entity]
 #[ORM\Table(name: 'tx_dt3pace_domain_model_note')]
@@ -17,8 +18,8 @@ class Note extends AbstractEntity
     #[ORM\ManyToOne(targetEntity: Session::class)]
     protected ?Session $session = null;
 
-    #[ORM\ManyToOne(targetEntity: \TYPO3\CMS\Extbase\Domain\Model\FrontendUser::class)]
-    protected ?\TYPO3\CMS\Extbase\Domain\Model\FrontendUser $user = null;
+    #[ORM\ManyToOne(targetEntity: FrontendUser::class)]
+    protected ?FrontendUser $user = null;
 
     public function getNoteText(): string
     {
@@ -40,12 +41,12 @@ class Note extends AbstractEntity
         $this->session = $session;
     }
 
-    public function getUser(): ?\TYPO3\CMS\Extbase\Domain\Model\FrontendUser
+    public function getUser(): ?FrontendUser
     {
         return $this->user;
     }
 
-    public function setUser(?\TYPO3\CMS\Extbase\Domain\Model\FrontendUser $user): void
+    public function setUser(?FrontendUser $user): void
     {
         $this->user = $user;
     }

@@ -1,48 +1,8 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Call to an undefined method object\\:\\:setNoteText\\(\\)\\.$#"
-			count: 1
-			path: Classes/Controller/NoteController.php
-
-		-
-			message: "#^Method Ndrstmr\\\\Dt3Pace\\\\Controller\\\\NoteController\\:\\:getCurrentFrontendUser\\(\\) should return Ndrstmr\\\\Dt3Pace\\\\Domain\\\\Model\\\\FrontendUser\\|null but returns TYPO3\\\\CMS\\\\Extbase\\\\DomainObject\\\\DomainObjectInterface\\|null\\.$#"
-			count: 1
-			path: Classes/Controller/NoteController.php
-
-		-
-			message: "#^Parameter \\#1 \\$session of method Ndrstmr\\\\Dt3Pace\\\\Domain\\\\Model\\\\Note\\:\\:setSession\\(\\) expects Ndrstmr\\\\Dt3Pace\\\\Domain\\\\Model\\\\Session\\|null, TYPO3\\\\CMS\\\\Extbase\\\\DomainObject\\\\DomainObjectInterface given\\.$#"
-			count: 1
-			path: Classes/Controller/NoteController.php
-
-		-
-			message: "#^Parameter \\#1 \\$user of method Ndrstmr\\\\Dt3Pace\\\\Domain\\\\Model\\\\Note\\:\\:setUser\\(\\) expects TYPO3\\\\CMS\\\\Extbase\\\\Domain\\\\Model\\\\FrontendUser\\|null, Ndrstmr\\\\Dt3Pace\\\\Domain\\\\Model\\\\FrontendUser given\\.$#"
-			count: 1
-			path: Classes/Controller/NoteController.php
-
-		-
-			message: "#^Parameter \\#2 \\$session of method Ndrstmr\\\\Dt3Pace\\\\Domain\\\\Repository\\\\NoteRepository\\:\\:findOneByUserAndSession\\(\\) expects Ndrstmr\\\\Dt3Pace\\\\Domain\\\\Model\\\\Session, TYPO3\\\\CMS\\\\Extbase\\\\DomainObject\\\\DomainObjectInterface given\\.$#"
-			count: 1
-			path: Classes/Controller/NoteController.php
-
-		-
 			message: "#^Attribute class TYPO3\\\\CMS\\\\Extbase\\\\Annotation\\\\Access does not exist\\.$#"
 			count: 2
-			path: Classes/Controller/SchedulerController.php
-
-		-
-			message: "#^Call to an undefined method TYPO3\\\\CMS\\\\Extbase\\\\DomainObject\\\\DomainObjectInterface\\:\\:setRoom\\(\\)\\.$#"
-			count: 1
-			path: Classes/Controller/SchedulerController.php
-
-		-
-			message: "#^Call to an undefined method TYPO3\\\\CMS\\\\Extbase\\\\DomainObject\\\\DomainObjectInterface\\:\\:setStatus\\(\\)\\.$#"
-			count: 1
-			path: Classes/Controller/SchedulerController.php
-
-		-
-			message: "#^Call to an undefined method TYPO3\\\\CMS\\\\Extbase\\\\DomainObject\\\\DomainObjectInterface\\:\\:setTimeSlot\\(\\)\\.$#"
-			count: 1
 			path: Classes/Controller/SchedulerController.php
 
 		-
@@ -54,31 +14,6 @@ parameters:
 			message: "#^Parameter \\$view of method Ndrstmr\\\\Dt3Pace\\\\Controller\\\\SchedulerController\\:\\:initializeView\\(\\) has invalid type TYPO3\\\\CMS\\\\Extbase\\\\Mvc\\\\View\\\\ViewInterface\\.$#"
 			count: 1
 			path: Classes/Controller/SchedulerController.php
-
-		-
-			message: "#^Call to an undefined method TYPO3\\\\CMS\\\\Extbase\\\\DomainObject\\\\DomainObjectInterface\\:\\:addVote\\(\\)\\.$#"
-			count: 1
-			path: Classes/Controller/SessionController.php
-
-		-
-			message: "#^Call to an undefined method TYPO3\\\\CMS\\\\Extbase\\\\DomainObject\\\\DomainObjectInterface\\:\\:getVotes\\(\\)\\.$#"
-			count: 1
-			path: Classes/Controller/SessionController.php
-
-		-
-			message: "#^Method Ndrstmr\\\\Dt3Pace\\\\Controller\\\\SessionController\\:\\:getCurrentFrontendUser\\(\\) should return Ndrstmr\\\\Dt3Pace\\\\Domain\\\\Model\\\\FrontendUser\\|null but returns TYPO3\\\\CMS\\\\Extbase\\\\DomainObject\\\\DomainObjectInterface\\|null\\.$#"
-			count: 1
-			path: Classes/Controller/SessionController.php
-
-		-
-			message: "#^Parameter \\#1 \\$session of method Ndrstmr\\\\Dt3Pace\\\\Domain\\\\Model\\\\Vote\\:\\:setSession\\(\\) expects Ndrstmr\\\\Dt3Pace\\\\Domain\\\\Model\\\\Session\\|null, TYPO3\\\\CMS\\\\Extbase\\\\DomainObject\\\\DomainObjectInterface given\\.$#"
-			count: 1
-			path: Classes/Controller/SessionController.php
-
-		-
-			message: "#^Parameter \\#1 \\$session of method Ndrstmr\\\\Dt3Pace\\\\Domain\\\\Repository\\\\VoteRepository\\:\\:findOneBySessionAndVoter\\(\\) expects Ndrstmr\\\\Dt3Pace\\\\Domain\\\\Model\\\\Session, TYPO3\\\\CMS\\\\Extbase\\\\DomainObject\\\\DomainObjectInterface given\\.$#"
-			count: 1
-			path: Classes/Controller/SessionController.php
 
 		-
 			message: "#^Parameter \\#1 \\$values of attribute class TYPO3\\\\CMS\\\\Extbase\\\\Annotation\\\\IgnoreValidation constructor expects array\\{value\\?\\: non\\-empty\\-string, argumentName\\?\\: non\\-empty\\-string\\}, 'session' given\\.$#"
@@ -117,26 +52,6 @@ parameters:
 
 		-
 			message: "#^Attribute class Doctrine\\\\ORM\\\\Mapping\\\\Table does not exist\\.$#"
-			count: 1
-			path: Classes/Domain/Model/Note.php
-
-		-
-			message: "#^Class TYPO3\\\\CMS\\\\Extbase\\\\Domain\\\\Model\\\\FrontendUser not found\\.$#"
-			count: 1
-			path: Classes/Domain/Model/Note.php
-
-		-
-			message: "#^Method Ndrstmr\\\\Dt3Pace\\\\Domain\\\\Model\\\\Note\\:\\:getUser\\(\\) has invalid return type TYPO3\\\\CMS\\\\Extbase\\\\Domain\\\\Model\\\\FrontendUser\\.$#"
-			count: 1
-			path: Classes/Domain/Model/Note.php
-
-		-
-			message: "#^Parameter \\$user of method Ndrstmr\\\\Dt3Pace\\\\Domain\\\\Model\\\\Note\\:\\:setUser\\(\\) has invalid type TYPO3\\\\CMS\\\\Extbase\\\\Domain\\\\Model\\\\FrontendUser\\.$#"
-			count: 1
-			path: Classes/Domain/Model/Note.php
-
-		-
-			message: "#^Property Ndrstmr\\\\Dt3Pace\\\\Domain\\\\Model\\\\Note\\:\\:\\$user has unknown class TYPO3\\\\CMS\\\\Extbase\\\\Domain\\\\Model\\\\FrontendUser as its type\\.$#"
 			count: 1
 			path: Classes/Domain/Model/Note.php
 
@@ -251,11 +166,6 @@ parameters:
 			path: Classes/Domain/Model/Vote.php
 
 		-
-			message: "#^Instantiated class Doctrine\\\\ORM\\\\Mapping\\\\UniqueConstraint not found\\.$#"
-			count: 1
-			path: Classes/Domain/Model/Vote.php
-
-		-
 			message: "#^Class Ndrstmr\\\\Dt3Pace\\\\Domain\\\\Repository\\\\FrontendUserRepository extends generic class TYPO3\\\\CMS\\\\Extbase\\\\Persistence\\\\Repository but does not specify its types\\: T$#"
 			count: 1
 			path: Classes/Domain/Repository/FrontendUserRepository.php
@@ -311,17 +221,7 @@ parameters:
 			path: Classes/Domain/Repository/VoteRepository.php
 
 		-
-			message: "#^Method class@anonymous/Tests/Functional/NoteAjaxTest\\.php\\:38\\:\\:__construct\\(\\) has parameter \\$user with no type specified\\.$#"
-			count: 1
-			path: Tests/Functional/NoteAjaxTest.php
-
-		-
-			message: "#^Method class@anonymous/Tests/Functional/NoteAjaxTest\\.php\\:42\\:\\:__construct\\(\\) has parameter \\$user with no type specified\\.$#"
-			count: 1
-			path: Tests/Functional/NoteAjaxTest.php
-
-		-
-			message: "#^Property class@anonymous/Tests/Functional/NoteAjaxTest\\.php\\:38\\:\\:\\$fe_user has no type specified\\.$#"
+			message: "#^Property class@anonymous/Tests/Functional/NoteAjaxTest\\.php\\:40\\:\\:\\$user is never read, only written\\.$#"
 			count: 1
 			path: Tests/Functional/NoteAjaxTest.php
 
@@ -329,43 +229,3 @@ parameters:
 			message: "#^Cannot access offset 'success' on mixed\\.$#"
 			count: 1
 			path: Tests/Unit/Controller/NoteControllerTest.php
-
-		-
-			message: "#^Property class@anonymous/Tests/Unit/Controller/NoteControllerTest\\.php\\:22\\:\\:\\$fe_user has no type specified\\.$#"
-			count: 1
-			path: Tests/Unit/Controller/NoteControllerTest.php
-
-		-
-			message: "#^Property class@anonymous/Tests/Unit/Controller/NoteControllerTest\\.php\\:26\\:\\:\\$user has no type specified\\.$#"
-			count: 1
-			path: Tests/Unit/Controller/NoteControllerTest.php
-
-		-
-			message: "#^Cannot access offset 'success' on mixed\\.$#"
-			count: 1
-			path: Tests/Unit/Controller/SessionControllerTest.php
-
-		-
-			message: "#^Cannot access offset 'votes' on mixed\\.$#"
-			count: 1
-			path: Tests/Unit/Controller/SessionControllerTest.php
-
-		-
-			message: "#^Class Ndrstmr\\\\Dt3Pace\\\\Tests\\\\Unit\\\\Controller\\\\TestableSessionController constructor invoked with 6 parameters, 7 required\\.$#"
-			count: 2
-			path: Tests/Unit/Controller/SessionControllerTest.php
-
-		-
-			message: "#^Method Ndrstmr\\\\Dt3Pace\\\\Tests\\\\Unit\\\\Controller\\\\TestableSessionController\\:\\:redirect\\(\\) has parameter \\$arguments with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: Tests/Unit/Controller/SessionControllerTest.php
-
-		-
-			message: "#^Property class@anonymous/Tests/Unit/Controller/SessionControllerTest\\.php\\:43\\:\\:\\$fe_user has no type specified\\.$#"
-			count: 1
-			path: Tests/Unit/Controller/SessionControllerTest.php
-
-		-
-			message: "#^Property class@anonymous/Tests/Unit/Controller/SessionControllerTest\\.php\\:47\\:\\:\\$user has no type specified\\.$#"
-			count: 1
-			path: Tests/Unit/Controller/SessionControllerTest.php
