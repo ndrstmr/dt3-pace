@@ -1,6 +1,8 @@
 # dt3_pace
 
 [![CI](https://github.com/ndrstmr/dt3_pace/actions/workflows/ci.yml/badge.svg)](https://github.com/ndrstmr/dt3_pace/actions/workflows/ci.yml)
+[![License](https://img.shields.io/github/license/ndrstmr/dt3_pace)](LICENSE)
+[![PHPStan Level](https://img.shields.io/badge/PHPStan-level%209-brightgreen)](https://phpstan.org/)
 
 > **Achtung: Automatisch generierter Code**
 > Dieser Code wurde von einem KI-Code-Agenten (OpenAi Codex - ein Cloud-basierter Software-Engineering-Agent) auf Basis von detaillierten Prompts erstellt. Er dient als Grundlage und Beschleuniger für die Entwicklung.
@@ -60,3 +62,8 @@ vendor/bin/phpstan analyse -c phpstan.neon.dist
 ```
 
 Both commands require the development dependencies to be installed.
+
+## License
+
+This project is licensed under the [EUPL 1.2](LICENSE).
+
