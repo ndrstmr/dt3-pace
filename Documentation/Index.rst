@@ -9,29 +9,34 @@ This is the starting point for the documentation of the dt3_pace extension.
 Events
 ======
 
-The extension dispatches several events that can be used by third-party
-extensions:
+The extension dispatches several PSR-14 events that can be consumed by third-party
+code:
 
 * ``Ndrstmr\Dt3Pace\Event\AfterVoteAddedEvent`` – emitted after a ``Vote``
-  entity has been persisted.
+  entity has been persisted. The event provides access to the ``Vote`` object.
 * ``Ndrstmr\Dt3Pace\Event\SessionStatusChangedEvent`` – emitted whenever a
-  ``Session`` changes its status.
+  ``Session`` changes its status. Listeners receive the ``Session`` object as
+  well as the old and new ``SessionStatus`` values.
 
-Database Indexes
-================
+Database Indexes and Migrations
+===============================
 
-Several database indexes improve lookup performance. If you use Doctrine
-migrations, they can be created automatically. Alternatively run the following
-SQL statements after installing the extension::
+Several database indexes improve lookup performance. If you maintain your schema
+using Doctrine migrations create a new migration after installing or updating the
+extension:
+
+```
+vendor/bin/typo3 doctrine:migrations:diff
+```
+
+Apply the generated migration or run the following SQL manually if migrations
+are not used::
 
     CREATE INDEX idx_session_status ON tx_dt3pace_domain_model_session (status);
     CREATE INDEX idx_session_time_slot ON tx_dt3pace_domain_model_session (time_slot);
     CREATE INDEX idx_session_room ON tx_dt3pace_domain_model_session (room);
     CREATE INDEX idx_vote_voter ON tx_dt3pace_domain_model_vote (voter);
     CREATE INDEX idx_vote_session ON tx_dt3pace_domain_model_vote (session);
-
-When using Doctrine migrations call ``bin/typo3cms doctrine:migrations:diff``
-after updating the entities and apply the generated migration.
 
 Scheduler Permissions
 =====================
