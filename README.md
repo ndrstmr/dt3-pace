@@ -3,7 +3,7 @@
 [![CI](https://github.com/ndrstmr/dt3_pace/actions/workflows/ci.yml/badge.svg)](https://github.com/ndrstmr/dt3_pace/actions/workflows/ci.yml)
 
 > **Achtung: Automatisch generierter Code**
-> Dieser Code wurde von einem KI-Code-Agenten (Google Gemini) auf Basis eines detaillierten Prompts erstellt. Er dient als Grundlage und Beschleuniger für die Entwicklung.
+> Dieser Code wurde von einem KI-Code-Agenten (OpenAi Codex - ein Cloud-basierter Software-Engineering-Agent) auf Basis von detaillierten Prompts erstellt. Er dient als Grundlage und Beschleuniger für die Entwicklung.
 > Jeder Entwickler ist verpflichtet, den Code vor einem produktiven Einsatz eigenständig und sorgfältig zu überprüfen, zu testen und gegebenenfalls anzupassen. Es wird keinerlei Haftung für Fehler, Sicherheitslücken oder Fehlfunktionen übernommen.
 
 PACE - Planning And Conference Engine
