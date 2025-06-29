@@ -26,6 +26,4 @@ class NoteController extends ActionController
         $notes = $this->noteRepository->findByUser($user);
         $this->view->assign('notes', $notes);
     }
-
 }
-

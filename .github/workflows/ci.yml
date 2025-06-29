@@ -31,6 +31,18 @@ jobs:
       - name: Audit Composer dependencies
         run: composer audit
 
+      - name: Check code style with php-cs-fixer
+        run: vendor/bin/php-cs-fixer fix --dry-run --diff
+
+      - name: Run rector in dry-run mode
+        run: vendor/bin/rector process --dry-run
+
+      - name: Run fractor in dry-run mode
+        run: vendor/bin/fractor process --dry-run
+
+      - name: Run tailor CLI
+        run: vendor/bin/tailor --version
+
       - name: Run phpstan
         run: vendor/bin/phpstan analyse -c phpstan.neon.dist
         
