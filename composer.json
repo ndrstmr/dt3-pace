@@ -2,7 +2,7 @@
     "name": "ndrstmr/dt3_pace",
     "description": "PACE - Planning And Conference Engine",
     "type": "typo3-cms-extension",
-    "license": "GPL-2.0-or-later",
+    "license": "EUPL-1.2",
     "require": {
         "typo3/cms-core": "^13.4"
     },
