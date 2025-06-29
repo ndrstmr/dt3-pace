@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
@@ -65,7 +66,7 @@ ExtensionUtility::registerModule(
     '',
     [SchedulerController::class => 'show,updateSessionSlot'],
     [
-        'access' => 'user,group',
+        'access' => (string)($GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['dt3_pace']['schedulerModuleAccess'] ?? 'admin'),
         'iconIdentifier' => 'actions-calendar',
         'labels' => 'LLL:EXT:dt3_pace/Resources/Private/Language/locallang_dt3pace.xlf:module.scheduler',
     ]
