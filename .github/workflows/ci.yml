@@ -7,16 +7,32 @@ on:
   pull_request:
 
 jobs:
-  tests:
+  # Job 1: Führt alle Qualitäts-Checks und Tests aus
+  quality-and-tests:
+    name: PHP ${{ matrix.php-version }} Quality Checks
     runs-on: ubuntu-latest
+    strategy:
+      # Teste immer gegen mehrere PHP-Versionen
+      matrix:
+        php-version: ['8.3']
+
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-php@v2
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.3'
+          php-version: ${{ matrix.php-version }}
+
       - name: Install dependencies
-        run: composer install --no-interaction --prefer-dist --ignore-platform-reqs
+        run: composer install --prefer-dist --no-progress
+
+      - name: Audit Composer dependencies
+        run: composer audit
+
       - name: Run phpstan
         run: vendor/bin/phpstan analyse -c phpstan.neon.dist
+        
       - name: Run phpunit
         run: vendor/bin/phpunit -c phpunit.xml.dist
