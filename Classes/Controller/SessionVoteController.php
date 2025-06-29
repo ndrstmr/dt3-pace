@@ -7,7 +7,7 @@ namespace Ndrstmr\Dt3Pace\Controller;
 use Ndrstmr\Dt3Pace\Domain\Model\Vote;
 use Ndrstmr\Dt3Pace\Domain\Repository\SessionRepository;
 use Ndrstmr\Dt3Pace\Domain\Repository\VoteRepository;
-use Ndrstmr\Dt3Pace\Domain\Repository\FrontendUserRepository;
+use Ndrstmr\Dt3Pace\Service\FrontendUserProvider;
 use Ndrstmr\Dt3Pace\Event\AfterVoteAddedEvent;
 use TYPO3\CMS\Core\Http\JsonResponse;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
@@ -19,7 +19,7 @@ class SessionVoteController extends ActionController
     public function __construct(
         private readonly SessionRepository $sessionRepository,
         private readonly VoteRepository $voteRepository,
-        private readonly FrontendUserRepository $frontendUserRepository,
+        private readonly FrontendUserProvider $frontendUserProvider,
         private readonly PersistenceManager $persistenceManager,
         EventDispatcherInterface $eventDispatcher
     ) {
@@ -28,7 +28,7 @@ class SessionVoteController extends ActionController
 
     public function voteAction(int $session): JsonResponse
     {
-        $user = $this->getCurrentFrontendUser();
+        $user = $this->frontendUserProvider->getCurrentFrontendUser();
         if ($user === null) {
             return new JsonResponse(['success' => false], 403);
         }
@@ -51,12 +51,4 @@ class SessionVoteController extends ActionController
         return new JsonResponse(['success' => true, 'votes' => $sessionObj->getVotes()]);
     }
 
-    private function getCurrentFrontendUser(): ?\Ndrstmr\Dt3Pace\Domain\Model\FrontendUser
-    {
-        $uid = (int)($GLOBALS['TSFE']->fe_user->user['uid'] ?? 0);
-        if ($uid === 0) {
-            return null;
-        }
-        return $this->frontendUserRepository->findByUid($uid);
-    }
 }
