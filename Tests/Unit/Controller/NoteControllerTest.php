@@ -18,6 +18,7 @@ use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Context\SecurityAspect;
 use TYPO3\CMS\Core\Security\RequestToken;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use Psr\Log\NullLogger;
 use PHPUnit\Framework\TestCase;
 
 class NoteControllerTest extends TestCase
@@ -26,18 +27,11 @@ class NoteControllerTest extends TestCase
 
     protected function setUp(): void
     {
-        $GLOBALS['TSFE'] = new class () {
-            public object $fe_user;
-            public function __construct()
-            {
-                $this->fe_user = new class () {
-                    /** @var array{uid:int} */
-                    public array $user = ['uid' => 1];
-                };
-            }
-        };
-
         $this->context = new Context();
+        $frontendUser = new \TYPO3\CMS\Frontend\Authentication\FrontendUserAuthentication();
+        $frontendUser->setLogger(new NullLogger());
+        $frontendUser->user = ['uid' => 1];
+        $this->context->setAspect('frontend.user', $frontendUser->createUserAspect());
         $securityAspect = SecurityAspect::provideIn($this->context);
         $securityAspect->setReceivedRequestToken(RequestToken::create('test'));
         GeneralUtility::setSingletonInstance(Context::class, $this->context);
@@ -46,7 +40,6 @@ class NoteControllerTest extends TestCase
     protected function tearDown(): void
     {
         GeneralUtility::removeSingletonInstance(Context::class, $this->context);
-        unset($GLOBALS['TSFE']);
     }
 
     public function testUpdateActionCreatesNote(): void
@@ -54,7 +47,10 @@ class NoteControllerTest extends TestCase
         $noteRepository = $this->createMock(NoteRepository::class);
         $sessionRepository = $this->createMock(SessionRepository::class);
         $frontendUserRepository = $this->createMock(FrontendUserRepository::class);
-        $frontendUserProvider = new \Ndrstmr\Dt3Pace\Service\FrontendUserProvider($frontendUserRepository);
+        $frontendUserProvider = new \Ndrstmr\Dt3Pace\Service\FrontendUserProvider(
+            $frontendUserRepository,
+            $this->context
+        );
         $persistenceManager = $this->createMock(PersistenceManager::class);
 
         $session = new Session();
