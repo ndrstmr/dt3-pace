@@ -24,6 +24,7 @@ use Psr\EventDispatcher\EventDispatcherInterface;
 use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Core\Http\JsonResponse as CoreJsonResponse;
 use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
+use TYPO3\CMS\Core\Database\ConnectionPool;
 
 class TestableSessionProposalController extends SessionProposalController
 {
@@ -41,6 +42,20 @@ class TestableSessionProposalController extends SessionProposalController
     ): ResponseInterface {
         // Avoid accessing request during unit tests
         return new CoreJsonResponse(null, $statusCode);
+    }
+
+    protected function redirectToUri(string $uri, int $statusCode = 303): ResponseInterface
+    {
+        return new CoreJsonResponse(null, $statusCode);
+    }
+
+    protected function addFlashMessage(
+        string $message,
+        string $title = '',
+        int $severity = self::OK,
+        bool $storeInSession = true
+    ): void {
+        // no-op in tests
     }
 }
 
@@ -65,6 +80,8 @@ class TestableSessionVoteController extends SessionVoteController
 class SessionControllerTest extends TestCase
 {
     private Context $context;
+    private ConnectionPool $connectionPool;
+    private object $mockConnection;
 
     protected function setUp(): void
     {
@@ -72,11 +89,22 @@ class SessionControllerTest extends TestCase
         SecurityAspect::provideIn($this->context)
             ->setReceivedRequestToken(RequestToken::create('test'));
         GeneralUtility::setSingletonInstance(Context::class, $this->context);
+
+        $this->mockConnection = new class {
+            public function beginTransaction(): void {}
+            public function commit(): void {}
+            public function rollBack(): void {}
+        };
+
+        $this->connectionPool = $this->createMock(ConnectionPool::class);
+        $this->connectionPool->method('getConnectionForTable')->willReturn($this->mockConnection);
+        GeneralUtility::setSingletonInstance(ConnectionPool::class, $this->connectionPool);
     }
 
     protected function tearDown(): void
     {
         GeneralUtility::removeSingletonInstance(Context::class, $this->context);
+        GeneralUtility::removeSingletonInstance(ConnectionPool::class, $this->connectionPool);
     }
 
     public function testCreateActionAddsSession(): void
