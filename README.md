@@ -1,6 +1,6 @@
 # dt3_pace
 
-[![CI](https://github.com/ndrstmr/dt3_pace/actions/workflows/ci.yml/badge.svg)](https://github.com/ndrstmr/dt3_pace/actions/workflows/ci.yml)
+[![CI](https://github.com/ndrstmr/dt3-pace/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/ndrstmr/dt3-pace/actions/workflows/ci.yml)
 [![License](https://img.shields.io/github/license/ndrstmr/dt3_pace)](https://github.com/ndrstmr/dt3-pace/blob/main/LICENSE)
 [![PHPStan Level](https://img.shields.io/badge/PHPStan-level%209-brightgreen)](https://phpstan.org/)
 
