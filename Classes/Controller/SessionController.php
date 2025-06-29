@@ -33,7 +33,4 @@ class SessionController extends ActionController
             'isLoggedIn' => $user !== null,
         ]);
     }
-
-
 }
-
