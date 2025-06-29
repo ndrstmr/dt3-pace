@@ -30,6 +30,12 @@ class Session extends AbstractEntity
     protected string $description = '';
 
     /**
+     * Slug used for routing
+     */
+    #[ORM\Column(type: 'string', length: 255, unique: true)]
+    protected string $slug = '';
+
+    /**
      * Current status
      */
     #[ORM\Column(type: 'string', enumType: SessionStatus::class)]
@@ -96,6 +102,16 @@ class Session extends AbstractEntity
     public function setDescription(string $description): void
     {
         $this->description = $description;
+    }
+
+    public function getSlug(): string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): void
+    {
+        $this->slug = $slug;
     }
 
     public function getStatus(): SessionStatus

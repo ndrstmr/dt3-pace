@@ -69,9 +69,14 @@ return [
             ],
         ],
         'slug' => [
-            'label' => 'Slug',
+            'label' => 'LLL:EXT:dt3_pace/Resources/Private/Language/locallang_db.xlf:tx_dt3pace_domain_model_speaker.slug',
             'config' => [
-                'type' => 'input',
+                'type' => 'slug',
+                'generatorOptions' => [
+                    'fields' => ['name'],
+                ],
+                'fallbackCharacter' => '-',
+                'eval' => 'uniqueInSite',
             ],
         ],
     ],

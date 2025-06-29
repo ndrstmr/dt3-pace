@@ -93,10 +93,43 @@ class SessionControllerTest extends TestCase
         $persistenceManager->expects($this->once())->method('persistAll');
 
         $controller = new TestableSessionProposalController($sessionRepository, $frontendUserProvider, $persistenceManager);
-        $controller->createAction($session);
+        $response = $controller->createAction($session);
+
+        $this->assertInstanceOf(ResponseInterface::class, $response);
 
         $this->assertSame(SessionStatus::PROPOSED, $session->getStatus());
         $this->assertSame($user, $session->getProposer());
+    }
+
+    public function testNewActionRedirectsWhenNotLoggedIn(): void
+    {
+        $sessionRepository = $this->createMock(SessionRepository::class);
+        $frontendUserProvider = $this->createMock(FrontendUserProvider::class);
+        $persistenceManager = $this->createMock(PersistenceManager::class);
+
+        $frontendUserProvider->method('getCurrentFrontendUser')->willReturn(null);
+
+        $controller = new TestableSessionProposalController($sessionRepository, $frontendUserProvider, $persistenceManager);
+        $response = $controller->newAction();
+
+        $this->assertInstanceOf(ResponseInterface::class, $response);
+        $this->assertSame(303, $response->getStatusCode());
+    }
+
+    public function testCreateActionRedirectsWhenNotLoggedIn(): void
+    {
+        $session = new Session();
+        $sessionRepository = $this->createMock(SessionRepository::class);
+        $frontendUserProvider = $this->createMock(FrontendUserProvider::class);
+        $persistenceManager = $this->createMock(PersistenceManager::class);
+
+        $frontendUserProvider->method('getCurrentFrontendUser')->willReturn(null);
+
+        $controller = new TestableSessionProposalController($sessionRepository, $frontendUserProvider, $persistenceManager);
+        $response = $controller->createAction($session);
+
+        $this->assertInstanceOf(ResponseInterface::class, $response);
+        $this->assertSame(303, $response->getStatusCode());
     }
 
     public function testVoteActionCreatesVote(): void
@@ -157,5 +190,48 @@ class SessionControllerTest extends TestCase
         /** @var array{success: bool} $payload */
         $payload = json_decode((string)$response->getBody(), true, 512, JSON_THROW_ON_ERROR);
         $this->assertFalse($payload['success']);
+    }
+
+    public function testConcurrentVotesOnlyPersistSingleRecord(): void
+    {
+        $session1 = new Session();
+        $session1->_setProperty('uid', 5);
+        $session2 = new Session();
+        $session2->_setProperty('uid', 5);
+
+        $sessionRepository = $this->createMock(SessionRepository::class);
+        $voteRepository = $this->createMock(VoteRepository::class);
+        $frontendUserProvider = $this->createMock(FrontendUserProvider::class);
+        $persistenceManager = $this->createMock(PersistenceManager::class);
+        $eventDispatcher = $this->createMock(EventDispatcherInterface::class);
+
+        $user = new FrontendUser();
+        $user->_setProperty('uid', 1);
+
+        $frontendUserProvider->method('getCurrentFrontendUser')->willReturn($user);
+        $sessionRepository->method('findByUid')->willReturnOnConsecutiveCalls($session1, $session2);
+        $voteRepository->method('findOneBySessionAndVoter')->willReturn(null);
+
+        $callCount = 0;
+        $persistenceManager->method('persistAll')->willReturnCallback(static function () use (&$callCount) {
+            ++$callCount;
+            if ($callCount === 2) {
+                $driverException = new class ('error') extends \Doctrine\DBAL\Driver\AbstractException {};
+                throw new UniqueConstraintViolationException($driverException, null);
+            }
+            return null;
+        });
+
+        $controller = new TestableSessionVoteController($sessionRepository, $voteRepository, $frontendUserProvider, $persistenceManager, $eventDispatcher);
+
+        $response1 = $controller->voteAction(5);
+        /** @var array{success: bool} $payload1 */
+        $payload1 = json_decode((string)$response1->getBody(), true, 512, JSON_THROW_ON_ERROR);
+        $this->assertTrue($payload1['success']);
+
+        $response2 = $controller->voteAction(5);
+        /** @var array{success: bool} $payload2 */
+        $payload2 = json_decode((string)$response2->getBody(), true, 512, JSON_THROW_ON_ERROR);
+        $this->assertFalse($payload2['success']);
     }
 }

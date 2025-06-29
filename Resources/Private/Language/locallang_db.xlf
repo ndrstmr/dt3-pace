@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages">
+    <body>
+      <trans-unit id="tx_dt3pace_domain_model_session.slug" xml:space="preserve">
+        <source>Slug</source>
+      </trans-unit>
+      <trans-unit id="tx_dt3pace_domain_model_session.status" xml:space="preserve">
+        <source>Status</source>
+      </trans-unit>
+      <trans-unit id="tx_dt3pace_domain_model_session.status.I.proposed" xml:space="preserve">
+        <source>Proposed</source>
+      </trans-unit>
+      <trans-unit id="tx_dt3pace_domain_model_session.status.I.scheduled" xml:space="preserve">
+        <source>Scheduled</source>
+      </trans-unit>
+      <trans-unit id="tx_dt3pace_domain_model_session.status.I.rejected" xml:space="preserve">
+        <source>Rejected</source>
+      </trans-unit>
+      <trans-unit id="tx_dt3pace_domain_model_speaker.slug" xml:space="preserve">
+        <source>Slug</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

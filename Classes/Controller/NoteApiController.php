@@ -9,32 +9,24 @@ use Ndrstmr\Dt3Pace\Domain\Model\Session;
 use Ndrstmr\Dt3Pace\Domain\Repository\NoteRepository;
 use Ndrstmr\Dt3Pace\Domain\Repository\SessionRepository;
 use Ndrstmr\Dt3Pace\Service\FrontendUserProvider;
-use TYPO3\CMS\Core\Context\Context;
-use TYPO3\CMS\Core\Context\SecurityAspect;
-use TYPO3\CMS\Core\Security\RequestToken;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Http\JsonResponse;
-use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
+use Ndrstmr\Dt3Pace\Controller\BaseAjaxController;
 use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
 
-class NoteApiController extends ActionController
+class NoteApiController extends BaseAjaxController
 {
     public function __construct(
         private readonly NoteRepository $noteRepository,
         private readonly SessionRepository $sessionRepository,
-        private readonly FrontendUserProvider $frontendUserProvider,
+        FrontendUserProvider $frontendUserProvider,
         private readonly PersistenceManager $persistenceManager
     ) {
+        parent::__construct($frontendUserProvider);
     }
 
     public function updateAction(int $session, string $note): JsonResponse
     {
-        $context = GeneralUtility::makeInstance(Context::class);
-        $securityAspect = SecurityAspect::provideIn($context);
-        if (!$securityAspect->getReceivedRequestToken() instanceof RequestToken) {
-            return new JsonResponse(['success' => false], 403);
-        }
-        $user = $this->frontendUserProvider->getCurrentFrontendUser();
+        $user = $this->getAuthenticatedUser();
         if ($user === null) {
             return new JsonResponse(['success' => false], 403);
         }

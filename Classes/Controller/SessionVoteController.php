@@ -10,36 +10,30 @@ use Ndrstmr\Dt3Pace\Domain\Repository\SessionRepository;
 use Ndrstmr\Dt3Pace\Domain\Repository\VoteRepository;
 use Ndrstmr\Dt3Pace\Service\FrontendUserProvider;
 use Ndrstmr\Dt3Pace\Event\AfterVoteAddedEvent;
-use TYPO3\CMS\Core\Context\Context;
-use TYPO3\CMS\Core\Context\SecurityAspect;
-use TYPO3\CMS\Core\Security\RequestToken;
+use Ndrstmr\Dt3Pace\Controller\BaseAjaxController;
 use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
+use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Http\JsonResponse;
-use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
 use Psr\EventDispatcher\EventDispatcherInterface;
 
-class SessionVoteController extends ActionController
+class SessionVoteController extends BaseAjaxController
 {
     public function __construct(
         private readonly SessionRepository $sessionRepository,
         private readonly VoteRepository $voteRepository,
-        private readonly FrontendUserProvider $frontendUserProvider,
+        FrontendUserProvider $frontendUserProvider,
         private readonly PersistenceManager $persistenceManager,
         EventDispatcherInterface $eventDispatcher
     ) {
+        parent::__construct($frontendUserProvider);
         $this->eventDispatcher = $eventDispatcher;
     }
 
     public function voteAction(int $session): JsonResponse
     {
-        $context = GeneralUtility::makeInstance(Context::class);
-        $securityAspect = SecurityAspect::provideIn($context);
-        if (!$securityAspect->getReceivedRequestToken() instanceof RequestToken) {
-            return new JsonResponse(['success' => false], 403);
-        }
-        $user = $this->frontendUserProvider->getCurrentFrontendUser();
+        $user = $this->getAuthenticatedUser();
         if ($user === null) {
             return new JsonResponse(['success' => false], 403);
         }
@@ -55,13 +49,18 @@ class SessionVoteController extends ActionController
         $vote->setSession($sessionObj);
         $vote->setVoter($user);
 
+        $connection = GeneralUtility::makeInstance(ConnectionPool::class)
+            ->getConnectionForTable('tx_dt3pace_domain_model_vote');
+        $connection->beginTransaction();
         try {
             $this->voteRepository->add($vote);
             $sessionObj->addVote();
             $this->sessionRepository->update($sessionObj);
             $this->persistenceManager->persistAll();
+            $connection->commit();
             $this->eventDispatcher->dispatch(new AfterVoteAddedEvent($vote));
         } catch (UniqueConstraintViolationException $e) {
+            $connection->rollBack();
             return new JsonResponse(['success' => false, 'message' => 'already voted'], 400);
         }
 
