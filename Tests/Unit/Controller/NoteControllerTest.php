@@ -11,6 +11,7 @@ use Ndrstmr\Dt3Pace\Domain\Model\FrontendUser;
 use Ndrstmr\Dt3Pace\Domain\Repository\NoteRepository;
 use Ndrstmr\Dt3Pace\Domain\Repository\SessionRepository;
 use Ndrstmr\Dt3Pace\Domain\Repository\FrontendUserRepository;
+use Ndrstmr\Dt3Pace\Service\FrontendUserProvider;
 use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
 use TYPO3\CMS\Core\Http\JsonResponse;
 use PHPUnit\Framework\TestCase;
@@ -35,6 +36,7 @@ class NoteControllerTest extends TestCase
         $noteRepository = $this->createMock(NoteRepository::class);
         $sessionRepository = $this->createMock(SessionRepository::class);
         $frontendUserRepository = $this->createMock(FrontendUserRepository::class);
+        $frontendUserProvider = new \Ndrstmr\Dt3Pace\Service\FrontendUserProvider($frontendUserRepository);
         $persistenceManager = $this->createMock(PersistenceManager::class);
 
         $session = new Session();
@@ -49,7 +51,7 @@ class NoteControllerTest extends TestCase
         $noteRepository->expects($this->once())->method('add')->with($this->isInstanceOf(Note::class));
         $persistenceManager->expects($this->once())->method('persistAll');
 
-        $controller = new NoteController($noteRepository, $sessionRepository, $frontendUserRepository, $persistenceManager);
+        $controller = new NoteController($noteRepository, $sessionRepository, $frontendUserProvider, $persistenceManager);
         $response = $controller->updateAction(5, 'text');
 
         $this->assertInstanceOf(JsonResponse::class, $response);

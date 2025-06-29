@@ -7,7 +7,7 @@ namespace Ndrstmr\Dt3Pace\Controller;
 use Ndrstmr\Dt3Pace\Domain\Model\Note;
 use Ndrstmr\Dt3Pace\Domain\Repository\NoteRepository;
 use Ndrstmr\Dt3Pace\Domain\Repository\SessionRepository;
-use Ndrstmr\Dt3Pace\Domain\Repository\FrontendUserRepository;
+use Ndrstmr\Dt3Pace\Service\FrontendUserProvider;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Core\Http\JsonResponse;
 use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
@@ -17,14 +17,14 @@ class NoteController extends ActionController
     public function __construct(
         private readonly NoteRepository $noteRepository,
         private readonly SessionRepository $sessionRepository,
-        private readonly FrontendUserRepository $frontendUserRepository,
+        private readonly FrontendUserProvider $frontendUserProvider,
         private readonly PersistenceManager $persistenceManager
     ) {
     }
 
     public function updateAction(int $session, string $note): JsonResponse
     {
-        $user = $this->getCurrentFrontendUser();
+        $user = $this->frontendUserProvider->getCurrentFrontendUser();
         if ($user === null) {
             return new JsonResponse(['success' => false], 403);
         }
@@ -46,7 +46,7 @@ class NoteController extends ActionController
 
     public function summaryAction(): void
     {
-        $user = $this->getCurrentFrontendUser();
+        $user = $this->frontendUserProvider->getCurrentFrontendUser();
         if ($user === null) {
             $this->view->assign('notes', []);
             return;
@@ -55,12 +55,5 @@ class NoteController extends ActionController
         $this->view->assign('notes', $notes);
     }
 
-    private function getCurrentFrontendUser(): ?\Ndrstmr\Dt3Pace\Domain\Model\FrontendUser
-    {
-        $uid = (int)($GLOBALS['TSFE']->fe_user->user['uid'] ?? 0);
-        if ($uid === 0) {
-            return null;
-        }
-        return $this->frontendUserRepository->findByUid($uid);
-    }
 }
+
