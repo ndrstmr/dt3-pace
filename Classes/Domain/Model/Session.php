@@ -14,7 +14,14 @@ use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
  * Represents a conference session.
  */
 #[ORM\Entity]
-#[ORM\Table(name: 'tx_dt3pace_domain_model_session')]
+#[ORM\Table(
+    name: 'tx_dt3pace_domain_model_session',
+    indexes: [
+        new ORM\Index(columns: ['status']),
+        new ORM\Index(columns: ['time_slot']),
+        new ORM\Index(columns: ['room']),
+    ]
+)]
 class Session extends AbstractEntity
 {
     /**
