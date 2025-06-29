@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Ndrstmr\Dt3Pace\Controller;
 
 use Ndrstmr\Dt3Pace\Domain\Model\Note;
+use Ndrstmr\Dt3Pace\Domain\Model\Session;
 use Ndrstmr\Dt3Pace\Domain\Repository\NoteRepository;
 use Ndrstmr\Dt3Pace\Domain\Repository\SessionRepository;
 use Ndrstmr\Dt3Pace\Service\FrontendUserProvider;
@@ -37,10 +38,12 @@ class NoteApiController extends ActionController
         if ($user === null) {
             return new JsonResponse(['success' => false], 403);
         }
+        /** @var Session|null $sessionObj */
         $sessionObj = $this->sessionRepository->findByUid($session);
         if ($sessionObj === null) {
             return new JsonResponse(['success' => false], 404);
         }
+        /** @var Note|null $noteObj */
         $noteObj = $this->noteRepository->findOneByUserAndSession($user, $sessionObj);
         if ($noteObj === null) {
             $noteObj = new Note();

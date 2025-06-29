@@ -21,11 +21,12 @@ class NoteControllerTest extends TestCase
     protected function setUp(): void
     {
         $GLOBALS['TSFE'] = new class () {
-            public $fe_user;
+            public object $fe_user;
             public function __construct()
             {
                 $this->fe_user = new class () {
-                    public $user = ['uid' => 1];
+                    /** @var array{uid:int} */
+                    public array $user = ['uid' => 1];
                 };
             }
         };

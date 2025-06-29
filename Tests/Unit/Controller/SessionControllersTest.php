@@ -22,6 +22,9 @@ use TYPO3\CMS\Core\Http\JsonResponse as CoreJsonResponse;
 
 class TestableSessionProposalController extends SessionProposalController
 {
+    /**
+     * @param array<string, mixed>|null $arguments
+     */
     protected function redirect(
         ?string $actionName,
         ?string $controllerName = null,
@@ -38,6 +41,9 @@ class TestableSessionProposalController extends SessionProposalController
 
 class TestableSessionVoteController extends SessionVoteController
 {
+    /**
+     * @param array<string, mixed>|null $arguments
+     */
     protected function redirect(
         ?string $actionName,
         ?string $controllerName = null,
@@ -97,7 +103,8 @@ class SessionControllerTest extends TestCase
         $response = $controller->voteAction(5);
 
         $this->assertInstanceOf(JsonResponse::class, $response);
-        $payload = json_decode((string)$response->getBody(), true);
+        /** @var array{success: bool, votes: int} $payload */
+        $payload = json_decode((string)$response->getBody(), true, 512, JSON_THROW_ON_ERROR);
         $this->assertTrue($payload['success']);
         $this->assertSame(1, $payload['votes']);
     }

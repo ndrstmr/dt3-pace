@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Ndrstmr\Dt3Pace\Controller;
 
 use Ndrstmr\Dt3Pace\Domain\Model\Vote;
+use Ndrstmr\Dt3Pace\Domain\Model\Session;
 use Ndrstmr\Dt3Pace\Domain\Repository\SessionRepository;
 use Ndrstmr\Dt3Pace\Domain\Repository\VoteRepository;
 use Ndrstmr\Dt3Pace\Service\FrontendUserProvider;
@@ -41,6 +42,7 @@ class SessionVoteController extends ActionController
         if ($user === null) {
             return new JsonResponse(['success' => false], 403);
         }
+        /** @var Session|null $sessionObj */
         $sessionObj = $this->sessionRepository->findByUid($session);
         if ($sessionObj === null) {
             return new JsonResponse(['success' => false], 404);
