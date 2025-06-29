@@ -13,6 +13,8 @@ use Ndrstmr\Dt3Pace\Domain\Repository\TimeSlotRepository;
 use Ndrstmr\Dt3Pace\Domain\Repository\VoteRepository;
 use Ndrstmr\Dt3Pace\Domain\Repository\NoteRepository;
 use TYPO3\CMS\Core\Http\JsonResponse;
+use Psr\EventDispatcher\EventDispatcherInterface;
+use Ndrstmr\Dt3Pace\Event\AfterVoteAddedEvent;
 use TYPO3\CMS\Extbase\Annotation\IgnoreValidation;
 use Ndrstmr\Dt3Pace\Domain\Model\FrontendUser;
 use Ndrstmr\Dt3Pace\Domain\Repository\FrontendUserRepository;
@@ -28,8 +30,10 @@ class SessionController extends ActionController
         private readonly TimeSlotRepository $timeSlotRepository,
         private readonly FrontendUserRepository $frontendUserRepository,
         private readonly PersistenceManager $persistenceManager,
-        private readonly NoteRepository $noteRepository
+        private readonly NoteRepository $noteRepository,
+        EventDispatcherInterface $eventDispatcher
     ) {
+        $this->eventDispatcher = $eventDispatcher;
     }
 
     public function listAction(): void
@@ -122,6 +126,7 @@ class SessionController extends ActionController
         $sessionObj->addVote();
         $this->sessionRepository->update($sessionObj);
         $this->persistenceManager->persistAll();
+        $this->eventDispatcher->dispatch(new AfterVoteAddedEvent($vote));
 
         return new JsonResponse(['success' => true, 'votes' => $sessionObj->getVotes()]);
     }
