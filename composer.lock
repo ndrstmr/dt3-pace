@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "464c688fa1d15743c06d5561fd71f38d",
+    "content-hash": "84528cb51a6ce859c219309ccec34c20",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -4742,25 +4742,28 @@
     "packages-dev": [
         {
             "name": "a9f/fractor",
-            "version": "v0.2.2",
+            "version": "v0.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/andreaswolf/fractor-fractor.git",
-                "reference": "e88ce78de963e56c204b2e48139dc59db35786a9"
+                "reference": "96a9d4a153d98a24b7733d1c7664c4eb788ad683"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/andreaswolf/fractor-fractor/zipball/e88ce78de963e56c204b2e48139dc59db35786a9",
-                "reference": "e88ce78de963e56c204b2e48139dc59db35786a9",
+                "url": "https://api.github.com/repos/andreaswolf/fractor-fractor/zipball/96a9d4a153d98a24b7733d1c7664c4eb788ad683",
+                "reference": "96a9d4a153d98a24b7733d1c7664c4eb788ad683",
                 "shasum": ""
             },
             "require": {
+                "league/flysystem": "^2.0 || ^3.0",
+                "league/flysystem-memory": "^2.0 || ^3.0",
                 "nette/utils": "^4.0",
+                "ondram/ci-detector": "^4.2",
                 "php": "^8.2",
                 "sebastian/diff": "^4.0 || ^5.0 || ^6.0",
                 "symfony/config": "^5.4 || ^6.4 || ^7.0",
                 "symfony/console": "^5.4 || ^6.4 || ^7.0",
-                "symfony/dependency-injection": "^5.4 || ^6.4 || ^7.0",
+                "symfony/dependency-injection": "^6.4 || ^7.0",
                 "symfony/filesystem": "^5.4 || ^6.4 || ^7.0",
                 "symfony/finder": "^5.4 || ^6.4 || ^7.0",
                 "symplify/rule-doc-generator-contracts": "^11.2",
@@ -4772,7 +4775,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "0.2-dev"
+                    "dev-main": "0.5-dev"
                 }
             },
             "autoload": {
@@ -4794,79 +4797,22 @@
             "description": "File Read-Analyse-Change Tool",
             "support": {
                 "issues": "https://github.com/andreaswolf/fractor-fractor/issues",
-                "source": "https://github.com/andreaswolf/fractor-fractor/tree/v0.2.2"
+                "source": "https://github.com/andreaswolf/fractor-fractor/tree/v0.5.1"
             },
-            "time": "2024-07-10T22:06:21+00:00"
-        },
-        {
-            "name": "a9f/fractor-doc-generator",
-            "version": "v0.2.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/andreaswolf/fractor-doc-generator.git",
-                "reference": "57492a4fcb04bdca390ad05763782781bc54ee4f"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/andreaswolf/fractor-doc-generator/zipball/57492a4fcb04bdca390ad05763782781bc54ee4f",
-                "reference": "57492a4fcb04bdca390ad05763782781bc54ee4f",
-                "shasum": ""
-            },
-            "require": {
-                "nette/utils": "^4.0",
-                "php": "^8.2",
-                "sebastian/diff": "^4.0 || ^5.0 || ^6.0",
-                "symfony/config": "^5.4 || ^6.4 || ^7.0",
-                "symfony/console": "^5.4 || ^6.4 || ^7.0",
-                "symfony/dependency-injection": "^5.4 || ^6.4 || ^7.0"
-            },
-            "require-dev": {
-                "symplify/rule-doc-generator": "12.1.3"
-            },
-            "bin": [
-                "bin/fractor-doc-generator"
-            ],
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-main": "0.2-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "a9f\\FractorDocGenerator\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Andreas Wolf",
-                    "email": "dev@a-w.io",
-                    "role": "Lead Developer"
-                }
-            ],
-            "description": "Generate docs for Fractor",
-            "support": {
-                "issues": "https://github.com/andreaswolf/fractor-doc-generator/issues",
-                "source": "https://github.com/andreaswolf/fractor-doc-generator/tree/v0.2.2"
-            },
-            "time": "2024-07-10T21:47:15+00:00"
+            "time": "2025-06-18T10:29:15+00:00"
         },
         {
             "name": "a9f/fractor-extension-installer",
-            "version": "v0.2.2",
+            "version": "v0.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/andreaswolf/fractor-extension-installer.git",
-                "reference": "f754ec1b0675d8f527962dd77e69448f4f09d186"
+                "reference": "ecb39a33705ec94acd5170ed2633c9598279b54c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/andreaswolf/fractor-extension-installer/zipball/f754ec1b0675d8f527962dd77e69448f4f09d186",
-                "reference": "f754ec1b0675d8f527962dd77e69448f4f09d186",
+                "url": "https://api.github.com/repos/andreaswolf/fractor-extension-installer/zipball/ecb39a33705ec94acd5170ed2633c9598279b54c",
+                "reference": "ecb39a33705ec94acd5170ed2633c9598279b54c",
                 "shasum": ""
             },
             "require": {
@@ -4880,7 +4826,7 @@
             "extra": {
                 "class": "a9f\\FractorExtensionInstaller\\InstallerPlugin",
                 "branch-alias": {
-                    "dev-main": "0.2-dev"
+                    "dev-main": "0.5-dev"
                 }
             },
             "autoload": {
@@ -4902,27 +4848,27 @@
             ],
             "description": "Installer for Fractor extensions.",
             "support": {
-                "source": "https://github.com/andreaswolf/fractor-extension-installer/tree/v0.2.2"
+                "source": "https://github.com/andreaswolf/fractor-extension-installer/tree/v0.5.1"
             },
-            "time": "2024-05-24T11:27:52+00:00"
+            "time": "2025-04-30T21:48:47+00:00"
         },
         {
             "name": "a9f/fractor-fluid",
-            "version": "v0.2.2",
+            "version": "v0.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/andreaswolf/fractor-fluid.git",
-                "reference": "426b3098648c811a8c42a9e74475371c6acc2bc5"
+                "reference": "507f3f601fcd2689decfc43427839cf64f5840b3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/andreaswolf/fractor-fluid/zipball/426b3098648c811a8c42a9e74475371c6acc2bc5",
-                "reference": "426b3098648c811a8c42a9e74475371c6acc2bc5",
+                "url": "https://api.github.com/repos/andreaswolf/fractor-fluid/zipball/507f3f601fcd2689decfc43427839cf64f5840b3",
+                "reference": "507f3f601fcd2689decfc43427839cf64f5840b3",
                 "shasum": ""
             },
             "require": {
-                "a9f/fractor": "^0.2.2",
-                "a9f/fractor-extension-installer": "^0.2.2",
+                "a9f/fractor": "^0.5.1",
+                "a9f/fractor-extension-installer": "^0.5.1",
                 "nette/utils": "^4.0",
                 "php": "^8.2",
                 "symplify/rule-doc-generator-contracts": "^11.2",
@@ -4931,7 +4877,7 @@
             "type": "fractor-extension",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "0.2-dev"
+                    "dev-main": "0.5-dev"
                 }
             },
             "autoload": {
@@ -4953,28 +4899,79 @@
             "description": "Fluid extension for the File Read-Analyse-Change Tool. Allows modifying Fluid files",
             "support": {
                 "issues": "https://github.com/andreaswolf/fractor-fluid/issues",
-                "source": "https://github.com/andreaswolf/fractor-fluid/tree/v0.2.2"
+                "source": "https://github.com/andreaswolf/fractor-fluid/tree/v0.5.1"
             },
-            "time": "2024-07-10T22:06:21+00:00"
+            "time": "2025-06-18T10:29:15+00:00"
         },
         {
-            "name": "a9f/fractor-typoscript",
-            "version": "v0.2.2",
+            "name": "a9f/fractor-htaccess",
+            "version": "v0.5.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/andreaswolf/fractor-typoscript.git",
-                "reference": "9405c0193aa5503db9830bce4eba181ca1d304f3"
+                "url": "https://github.com/andreaswolf/fractor-htaccess.git",
+                "reference": "f818ba5ab68cf98d860d96c629d7e8680eaefad4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/andreaswolf/fractor-typoscript/zipball/9405c0193aa5503db9830bce4eba181ca1d304f3",
-                "reference": "9405c0193aa5503db9830bce4eba181ca1d304f3",
+                "url": "https://api.github.com/repos/andreaswolf/fractor-htaccess/zipball/f818ba5ab68cf98d860d96c629d7e8680eaefad4",
+                "reference": "f818ba5ab68cf98d860d96c629d7e8680eaefad4",
                 "shasum": ""
             },
             "require": {
-                "a9f/fractor": "^0.2.2",
-                "a9f/fractor-extension-installer": "^0.2.2",
-                "helmich/typo3-typoscript-parser": "^2.6",
+                "a9f/fractor": "^0.5.1",
+                "a9f/fractor-extension-installer": "^0.5.1",
+                "nette/utils": "^4.0",
+                "php": "^8.2",
+                "symplify/rule-doc-generator-contracts": "^11.2",
+                "tivie/htaccess-parser": "^0.3.0",
+                "webmozart/assert": "^1.11"
+            },
+            "type": "fractor-extension",
+            "extra": {
+                "branch-alias": {
+                    "dev-main": "0.5-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "a9f\\FractorHtaccess\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Simon Schaufelberger",
+                    "email": "simonschaufi@gmail.com",
+                    "role": "Lead Developer"
+                }
+            ],
+            "description": "htaccess extension for the File Read-Analyse-Change Tool. Allows modifying htaccess files",
+            "support": {
+                "source": "https://github.com/andreaswolf/fractor-htaccess/tree/v0.5.1"
+            },
+            "time": "2025-06-18T10:29:15+00:00"
+        },
+        {
+            "name": "a9f/fractor-typoscript",
+            "version": "v0.5.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/andreaswolf/fractor-typoscript.git",
+                "reference": "0e411cdcf58ddca3378e4e83ba678a387e0bf292"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/andreaswolf/fractor-typoscript/zipball/0e411cdcf58ddca3378e4e83ba678a387e0bf292",
+                "reference": "0e411cdcf58ddca3378e4e83ba678a387e0bf292",
+                "shasum": ""
+            },
+            "require": {
+                "a9f/fractor": "^0.5.1",
+                "a9f/fractor-extension-installer": "^0.5.1",
+                "helmich/typo3-typoscript-parser": "^2.7.0",
                 "php": "^8.2",
                 "symplify/rule-doc-generator-contracts": "^11.2",
                 "webmozart/assert": "^1.11"
@@ -4982,7 +4979,7 @@
             "type": "fractor-extension",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "0.2-dev"
+                    "dev-main": "0.5-dev"
                 }
             },
             "autoload": {
@@ -5003,38 +5000,38 @@
             ],
             "description": "TypoScript extension for the File Read-Analyse-Change Tool. Allows modifying TYPO3 TypoScript configuration files",
             "support": {
-                "source": "https://github.com/andreaswolf/fractor-typoscript/tree/v0.2.2"
+                "source": "https://github.com/andreaswolf/fractor-typoscript/tree/v0.5.1"
             },
-            "time": "2024-07-10T22:06:21+00:00"
+            "time": "2025-06-18T10:29:15+00:00"
         },
         {
             "name": "a9f/fractor-xml",
-            "version": "v0.2.2",
+            "version": "v0.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/andreaswolf/fractor-xml.git",
-                "reference": "bc615e08dc440bb9e068bb53ddb027791e147265"
+                "reference": "6a9f39531fe36c84d30c8bdcb4844082a880eb6a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/andreaswolf/fractor-xml/zipball/bc615e08dc440bb9e068bb53ddb027791e147265",
-                "reference": "bc615e08dc440bb9e068bb53ddb027791e147265",
+                "url": "https://api.github.com/repos/andreaswolf/fractor-xml/zipball/6a9f39531fe36c84d30c8bdcb4844082a880eb6a",
+                "reference": "6a9f39531fe36c84d30c8bdcb4844082a880eb6a",
                 "shasum": ""
             },
             "require": {
-                "a9f/fractor": "^0.2.2",
-                "a9f/fractor-extension-installer": "^0.2.2",
+                "a9f/fractor": "^0.5.1",
+                "a9f/fractor-extension-installer": "^0.5.1",
                 "ext-dom": "*",
                 "ext-xml": "*",
                 "php": "^8.2",
-                "shanethehat/pretty-xml": "^1.0.2",
+                "simonschaufi/pretty-xml": "^3.0.0",
                 "symplify/rule-doc-generator-contracts": "^11.2",
                 "webmozart/assert": "^1.11"
             },
             "type": "fractor-extension",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "0.2-dev"
+                    "dev-main": "0.5-dev"
                 }
             },
             "autoload": {
@@ -5055,27 +5052,27 @@
             ],
             "description": "XML extension for the File Read-Analyse-Change Tool. Allows modifying XML files",
             "support": {
-                "source": "https://github.com/andreaswolf/fractor-xml/tree/v0.2.2"
+                "source": "https://github.com/andreaswolf/fractor-xml/tree/v0.5.1"
             },
-            "time": "2024-07-10T22:06:21+00:00"
+            "time": "2025-06-18T10:29:15+00:00"
         },
         {
             "name": "a9f/fractor-yaml",
-            "version": "v0.2.2",
+            "version": "v0.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/andreaswolf/fractor-yaml.git",
-                "reference": "1cb20752d117b0b41678d98e5af61877033ab09c"
+                "reference": "4fa8e88c169c8e86ca624494008bec43c5608655"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/andreaswolf/fractor-yaml/zipball/1cb20752d117b0b41678d98e5af61877033ab09c",
-                "reference": "1cb20752d117b0b41678d98e5af61877033ab09c",
+                "url": "https://api.github.com/repos/andreaswolf/fractor-yaml/zipball/4fa8e88c169c8e86ca624494008bec43c5608655",
+                "reference": "4fa8e88c169c8e86ca624494008bec43c5608655",
                 "shasum": ""
             },
             "require": {
-                "a9f/fractor": "^0.2.2",
-                "a9f/fractor-extension-installer": "^0.2.2",
+                "a9f/fractor": "^0.5.1",
+                "a9f/fractor-extension-installer": "^0.5.1",
                 "php": "^8.2",
                 "symfony/yaml": "^5.4 || ^6.4 || ^7.0",
                 "symplify/rule-doc-generator-contracts": "^11.2",
@@ -5084,7 +5081,7 @@
             "type": "fractor-extension",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "0.2-dev"
+                    "dev-main": "0.5-dev"
                 }
             },
             "autoload": {
@@ -5105,32 +5102,32 @@
             ],
             "description": "YAML extension for the File Read-Analyse-Change Tool. Allows modifying YAML files",
             "support": {
-                "source": "https://github.com/andreaswolf/fractor-yaml/tree/v0.2.2"
+                "source": "https://github.com/andreaswolf/fractor-yaml/tree/v0.5.1"
             },
-            "time": "2024-07-10T22:06:21+00:00"
+            "time": "2025-06-18T10:29:15+00:00"
         },
         {
             "name": "a9f/typo3-fractor",
-            "version": "v0.2.2",
+            "version": "v0.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/andreaswolf/fractor-typo3-fractor.git",
-                "reference": "b8d6aa217eb80c19c5b4bd6ab0588d6b7b313210"
+                "reference": "6f9423e13619c3ac94307334674d26d3d64b70a5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/andreaswolf/fractor-typo3-fractor/zipball/b8d6aa217eb80c19c5b4bd6ab0588d6b7b313210",
-                "reference": "b8d6aa217eb80c19c5b4bd6ab0588d6b7b313210",
+                "url": "https://api.github.com/repos/andreaswolf/fractor-typo3-fractor/zipball/6f9423e13619c3ac94307334674d26d3d64b70a5",
+                "reference": "6f9423e13619c3ac94307334674d26d3d64b70a5",
                 "shasum": ""
             },
             "require": {
-                "a9f/fractor": "^0.2.2",
-                "a9f/fractor-doc-generator": "^0.2.2",
-                "a9f/fractor-extension-installer": "^0.2.2",
-                "a9f/fractor-fluid": "^0.2.2",
-                "a9f/fractor-typoscript": "^0.2.2",
-                "a9f/fractor-xml": "^0.2.2",
-                "a9f/fractor-yaml": "^0.2.2",
+                "a9f/fractor": "^0.5.1",
+                "a9f/fractor-extension-installer": "^0.5.1",
+                "a9f/fractor-fluid": "^0.5.1",
+                "a9f/fractor-htaccess": "^0.5.1",
+                "a9f/fractor-typoscript": "^0.5.1",
+                "a9f/fractor-xml": "^0.5.1",
+                "a9f/fractor-yaml": "^0.5.1",
                 "ext-dom": "*",
                 "php": "^8.2",
                 "symplify/rule-doc-generator-contracts": "^11.2"
@@ -5138,14 +5135,14 @@
             "type": "fractor-extension",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "0.2-dev"
+                    "dev-main": "0.5-dev"
                 }
             },
             "autoload": {
                 "psr-4": {
                     "a9f\\Typo3Fractor\\": [
-                        "src",
-                        "rules"
+                        "src/",
+                        "rules/"
                     ]
                 }
             },
@@ -5162,9 +5159,9 @@
             ],
             "description": "TYPO3 extension for the File Read-Analyse-Change Tool. Allows modifying XML files",
             "support": {
-                "source": "https://github.com/andreaswolf/fractor-typo3-fractor/tree/v0.2.2"
+                "source": "https://github.com/andreaswolf/fractor-typo3-fractor/tree/v0.5.1"
             },
-            "time": "2024-07-10T22:06:21+00:00"
+            "time": "2025-06-18T10:29:15+00:00"
         },
         {
             "name": "clue/ndjson-react",
@@ -5875,6 +5872,242 @@
             "time": "2025-06-17T14:20:45+00:00"
         },
         {
+            "name": "league/flysystem",
+            "version": "3.30.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/thephpleague/flysystem.git",
+                "reference": "2203e3151755d874bb2943649dae1eb8533ac93e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/2203e3151755d874bb2943649dae1eb8533ac93e",
+                "reference": "2203e3151755d874bb2943649dae1eb8533ac93e",
+                "shasum": ""
+            },
+            "require": {
+                "league/flysystem-local": "^3.0.0",
+                "league/mime-type-detection": "^1.0.0",
+                "php": "^8.0.2"
+            },
+            "conflict": {
+                "async-aws/core": "<1.19.0",
+                "async-aws/s3": "<1.14.0",
+                "aws/aws-sdk-php": "3.209.31 || 3.210.0",
+                "guzzlehttp/guzzle": "<7.0",
+                "guzzlehttp/ringphp": "<1.1.1",
+                "phpseclib/phpseclib": "3.0.15",
+                "symfony/http-client": "<5.2"
+            },
+            "require-dev": {
+                "async-aws/s3": "^1.5 || ^2.0",
+                "async-aws/simple-s3": "^1.1 || ^2.0",
+                "aws/aws-sdk-php": "^3.295.10",
+                "composer/semver": "^3.0",
+                "ext-fileinfo": "*",
+                "ext-ftp": "*",
+                "ext-mongodb": "^1.3|^2",
+                "ext-zip": "*",
+                "friendsofphp/php-cs-fixer": "^3.5",
+                "google/cloud-storage": "^1.23",
+                "guzzlehttp/psr7": "^2.6",
+                "microsoft/azure-storage-blob": "^1.1",
+                "mongodb/mongodb": "^1.2|^2",
+                "phpseclib/phpseclib": "^3.0.36",
+                "phpstan/phpstan": "^1.10",
+                "phpunit/phpunit": "^9.5.11|^10.0",
+                "sabre/dav": "^4.6.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "League\\Flysystem\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Frank de Jonge",
+                    "email": "info@frankdejonge.nl"
+                }
+            ],
+            "description": "File storage abstraction for PHP",
+            "keywords": [
+                "WebDAV",
+                "aws",
+                "cloud",
+                "file",
+                "files",
+                "filesystem",
+                "filesystems",
+                "ftp",
+                "s3",
+                "sftp",
+                "storage"
+            ],
+            "support": {
+                "issues": "https://github.com/thephpleague/flysystem/issues",
+                "source": "https://github.com/thephpleague/flysystem/tree/3.30.0"
+            },
+            "time": "2025-06-25T13:29:59+00:00"
+        },
+        {
+            "name": "league/flysystem-local",
+            "version": "3.30.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/thephpleague/flysystem-local.git",
+                "reference": "6691915f77c7fb69adfb87dcd550052dc184ee10"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/thephpleague/flysystem-local/zipball/6691915f77c7fb69adfb87dcd550052dc184ee10",
+                "reference": "6691915f77c7fb69adfb87dcd550052dc184ee10",
+                "shasum": ""
+            },
+            "require": {
+                "ext-fileinfo": "*",
+                "league/flysystem": "^3.0.0",
+                "league/mime-type-detection": "^1.0.0",
+                "php": "^8.0.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "League\\Flysystem\\Local\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Frank de Jonge",
+                    "email": "info@frankdejonge.nl"
+                }
+            ],
+            "description": "Local filesystem adapter for Flysystem.",
+            "keywords": [
+                "Flysystem",
+                "file",
+                "files",
+                "filesystem",
+                "local"
+            ],
+            "support": {
+                "source": "https://github.com/thephpleague/flysystem-local/tree/3.30.0"
+            },
+            "time": "2025-05-21T10:34:19+00:00"
+        },
+        {
+            "name": "league/flysystem-memory",
+            "version": "3.29.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/thephpleague/flysystem-memory.git",
+                "reference": "219c79ad8b1d614a58ac17b775bfb3a6b7228126"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/thephpleague/flysystem-memory/zipball/219c79ad8b1d614a58ac17b775bfb3a6b7228126",
+                "reference": "219c79ad8b1d614a58ac17b775bfb3a6b7228126",
+                "shasum": ""
+            },
+            "require": {
+                "ext-fileinfo": "*",
+                "league/flysystem": "^3.0.0",
+                "php": "^8.0.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "League\\Flysystem\\InMemory\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Frank de Jonge",
+                    "email": "info@frankdejonge.nl"
+                }
+            ],
+            "description": "In-memory filesystem adapter for Flysystem.",
+            "keywords": [
+                "Flysystem",
+                "file",
+                "files",
+                "filesystem",
+                "memory"
+            ],
+            "support": {
+                "source": "https://github.com/thephpleague/flysystem-memory/tree/3.29.0"
+            },
+            "time": "2024-08-09T21:24:39+00:00"
+        },
+        {
+            "name": "league/mime-type-detection",
+            "version": "1.16.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/thephpleague/mime-type-detection.git",
+                "reference": "2d6702ff215bf922936ccc1ad31007edc76451b9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/thephpleague/mime-type-detection/zipball/2d6702ff215bf922936ccc1ad31007edc76451b9",
+                "reference": "2d6702ff215bf922936ccc1ad31007edc76451b9",
+                "shasum": ""
+            },
+            "require": {
+                "ext-fileinfo": "*",
+                "php": "^7.4 || ^8.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.2",
+                "phpstan/phpstan": "^0.12.68",
+                "phpunit/phpunit": "^8.5.8 || ^9.3 || ^10.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "League\\MimeTypeDetection\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Frank de Jonge",
+                    "email": "info@frankdejonge.nl"
+                }
+            ],
+            "description": "Mime-type detection for Flysystem",
+            "support": {
+                "issues": "https://github.com/thephpleague/mime-type-detection/issues",
+                "source": "https://github.com/thephpleague/mime-type-detection/tree/1.16.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/frankdejonge",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/league/flysystem",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2024-09-21T08:32:55+00:00"
+        },
+        {
             "name": "myclabs/deep-copy",
             "version": "1.13.1",
             "source": {
@@ -6077,6 +6310,84 @@
                 "source": "https://github.com/nikic/PHP-Parser/tree/v5.5.0"
             },
             "time": "2025-05-31T08:24:38+00:00"
+        },
+        {
+            "name": "ondram/ci-detector",
+            "version": "4.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/OndraM/ci-detector.git",
+                "reference": "8b0223b5ed235fd377c75fdd1bfcad05c0f168b8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/OndraM/ci-detector/zipball/8b0223b5ed235fd377c75fdd1bfcad05c0f168b8",
+                "reference": "8b0223b5ed235fd377c75fdd1bfcad05c0f168b8",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.4 || ^8.0"
+            },
+            "require-dev": {
+                "ergebnis/composer-normalize": "^2.13.2",
+                "lmc/coding-standard": "^3.0.0",
+                "php-parallel-lint/php-parallel-lint": "^1.2",
+                "phpstan/extension-installer": "^1.1.0",
+                "phpstan/phpstan": "^1.2.0",
+                "phpstan/phpstan-phpunit": "^1.0.0",
+                "phpunit/phpunit": "^9.6.13"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "OndraM\\CiDetector\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ondřej Machulda",
+                    "email": "ondrej.machulda@gmail.com"
+                }
+            ],
+            "description": "Detect continuous integration environment and provide unified access to properties of current build",
+            "keywords": [
+                "CircleCI",
+                "Codeship",
+                "Wercker",
+                "adapter",
+                "appveyor",
+                "aws",
+                "aws codebuild",
+                "azure",
+                "azure devops",
+                "azure pipelines",
+                "bamboo",
+                "bitbucket",
+                "buddy",
+                "ci-info",
+                "codebuild",
+                "continuous integration",
+                "continuousphp",
+                "devops",
+                "drone",
+                "github",
+                "gitlab",
+                "interface",
+                "jenkins",
+                "pipelines",
+                "sourcehut",
+                "teamcity",
+                "travis"
+            ],
+            "support": {
+                "issues": "https://github.com/OndraM/ci-detector/issues",
+                "source": "https://github.com/OndraM/ci-detector/tree/4.2.0"
+            },
+            "time": "2024-03-12T13:22:30+00:00"
         },
         {
             "name": "phar-io/manifest",
@@ -8405,28 +8716,31 @@
             "time": "2023-02-07T11:34:05+00:00"
         },
         {
-            "name": "shanethehat/pretty-xml",
-            "version": "1.0.2",
+            "name": "simonschaufi/pretty-xml",
+            "version": "3.0.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/shanethehat/pretty-xml.git",
-                "reference": "2b063c6544c8dc9563c53cb72eb06d1d74c9e75f"
+                "url": "https://github.com/simonschaufi/pretty-xml.git",
+                "reference": "2af716465f67cac264785cf1ca1484ce054c0f23"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/shanethehat/pretty-xml/zipball/2b063c6544c8dc9563c53cb72eb06d1d74c9e75f",
-                "reference": "2b063c6544c8dc9563c53cb72eb06d1d74c9e75f",
+                "url": "https://api.github.com/repos/simonschaufi/pretty-xml/zipball/2af716465f67cac264785cf1ca1484ce054c0f23",
+                "reference": "2af716465f67cac264785cf1ca1484ce054c0f23",
                 "shasum": ""
             },
+            "require": {
+                "php": "^7.4 || ^8.0",
+                "symfony/polyfill-php80": "^1.31"
+            },
             "require-dev": {
-                "behat/behat": "~3.0",
-                "bossa/phpspec2-expect": "*",
-                "phpspec/phpspec": "~2.0"
+                "ergebnis/composer-normalize": "^2.47",
+                "phpunit/phpunit": "^10.5"
             },
             "type": "library",
             "autoload": {
-                "psr-0": {
-                    "PrettyXml": "src/"
+                "psr-4": {
+                    "PrettyXml\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -8437,7 +8751,7 @@
                 {
                     "name": "Shane Auckland",
                     "email": "shane.auckland@gmail.com",
-                    "homepage": "http://shaneauckland.co.uk"
+                    "homepage": "https://shaneauckland.co.uk"
                 }
             ],
             "description": "Library for pretty-printing XML",
@@ -8446,11 +8760,20 @@
                 "xml"
             ],
             "support": {
-                "issues": "https://github.com/shanethehat/pretty-xml/issues",
-                "source": "https://github.com/shanethehat/pretty-xml/tree/master"
+                "issues": "https://github.com/simonschaufi/pretty-xml/issues",
+                "source": "https://github.com/simonschaufi/pretty-xml/tree/3.0.0"
             },
-            "abandoned": "simonschaufi/pretty-xml",
-            "time": "2015-08-10T14:22:54+00:00"
+            "funding": [
+                {
+                    "url": "https://www.paypal.me/simonschaufi/10",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/simonschaufi",
+                    "type": "github"
+                }
+            ],
+            "time": "2025-05-02T09:09:58+00:00"
         },
         {
             "name": "symfony/dotenv",
@@ -9266,6 +9589,54 @@
                 }
             ],
             "time": "2024-03-03T12:36:25+00:00"
+        },
+        {
+            "name": "tivie/htaccess-parser",
+            "version": "0.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tivie/php-htaccess-parser.git",
+                "reference": "14e14d066533c340851172ba1019ff52890b30b3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tivie/php-htaccess-parser/zipball/14e14d066533c340851172ba1019ff52890b30b3",
+                "reference": "14e14d066533c340851172ba1019ff52890b30b3",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.0.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^11.0.6"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Tivie\\HtaccessParser\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Estevão Soares dos Santos",
+                    "email": "estevao@soares-dos-santos.com"
+                }
+            ],
+            "description": "A .htaccess parser and validator implemented in PHP",
+            "homepage": "https://github.com/tivie/php-htaccess-parser",
+            "keywords": [
+                ".htaccess",
+                "htaccess"
+            ],
+            "support": {
+                "issues": "https://github.com/tivie/php-htaccess-parser/issues",
+                "source": "https://github.com/tivie/php-htaccess-parser/tree/0.3.0"
+            },
+            "time": "2024-03-17T05:33:05+00:00"
         },
         {
             "name": "typo3/cms-backend",
