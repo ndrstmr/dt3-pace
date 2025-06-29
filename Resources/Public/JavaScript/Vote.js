@@ -10,12 +10,14 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         body: JSON.stringify({ session: btn.dataset.session })
       }).then(r => r.json()).then(data => {
+        const li = btn.closest('li');
         if (data.success) {
-          const li = btn.closest('li');
           li.querySelector('.votes').textContent = data.votes;
           li.querySelector('.vote-message').textContent = 'Thanks for voting!';
           li.querySelector('.vote-message').hidden = false;
         } else {
+          li.querySelector('.vote-message').textContent = 'Du hast bereits abgestimmt';
+          li.querySelector('.vote-message').hidden = false;
           btn.disabled = false;
         }
       }).catch(() => {

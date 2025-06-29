@@ -10,6 +10,7 @@ use Ndrstmr\Dt3Pace\Service\FrontendUserProvider;
 use Ndrstmr\Dt3Pace\Domain\Repository\SessionRepository;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
+use Psr\Http\Message\ResponseInterface;
 
 class SessionProposalController extends ActionController
 {
@@ -20,24 +21,28 @@ class SessionProposalController extends ActionController
     ) {
     }
 
-    public function newAction(): void
+    public function newAction(): ResponseInterface
     {
         if ($this->frontendUserProvider->getCurrentFrontendUser() === null) {
-            throw new \RuntimeException('Login required', 166832);
+            $this->addFlashMessage('Please log in to propose a session.');
+            return $this->redirectToUri('/login');
         }
+
+        return $this->htmlResponse();
     }
 
-    public function createAction(Session $newSession): void
+    public function createAction(Session $newSession): ResponseInterface
     {
         $user = $this->frontendUserProvider->getCurrentFrontendUser();
         if ($user === null) {
-            throw new \RuntimeException('Login required', 166833);
+            $this->addFlashMessage('Please log in to propose a session.');
+            return $this->redirectToUri('/login');
         }
         $newSession->setStatus(SessionStatus::PROPOSED);
         $newSession->setProposer($user);
         $this->sessionRepository->add($newSession);
         $this->persistenceManager->persistAll();
-        $this->redirect('listProposals');
+        return $this->redirect('listProposals');
     }
 
     public function listProposalsAction(): void

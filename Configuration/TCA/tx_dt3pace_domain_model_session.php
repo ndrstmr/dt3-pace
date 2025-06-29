@@ -13,7 +13,7 @@ return [
         'iconfile' => 'EXT:dt3_pace/Resources/Public/Icons/tx_dt3pace_domain_model_session.svg',
     ],
     'interface' => [
-        'showRecordFieldList' => 'title,status,room,time_slot',
+        'showRecordFieldList' => 'title,slug,status,room,time_slot',
     ],
     'columns' => [
         'hidden' => [
@@ -29,6 +29,17 @@ return [
                 'required' => true,
             ],
         ],
+        'slug' => [
+            'label' => 'LLL:EXT:dt3_pace/Resources/Private/Language/locallang_db.xlf:tx_dt3pace_domain_model_session.slug',
+            'config' => [
+                'type' => 'slug',
+                'generatorOptions' => [
+                    'fields' => ['title'],
+                ],
+                'fallbackCharacter' => '-',
+                'eval' => 'uniqueInSite',
+            ],
+        ],
         'description' => [
             'label' => 'Description',
             'config' => [
@@ -37,10 +48,16 @@ return [
             ],
         ],
         'status' => [
-            'label' => 'Status',
+            'label' => 'LLL:EXT:dt3_pace/Resources/Private/Language/locallang_db.xlf:tx_dt3pace_domain_model_session.status',
             'config' => [
-                'type' => 'input',
-                'size' => 20,
+                'type' => 'select',
+                'renderType' => 'selectSingle',
+                'items' => [
+                    ['LLL:EXT:dt3_pace/Resources/Private/Language/locallang_db.xlf:tx_dt3pace_domain_model_session.status.I.proposed', 'proposed'],
+                    ['LLL:EXT:dt3_pace/Resources/Private/Language/locallang_db.xlf:tx_dt3pace_domain_model_session.status.I.scheduled', 'scheduled'],
+                    ['LLL:EXT:dt3_pace/Resources/Private/Language/locallang_db.xlf:tx_dt3pace_domain_model_session.status.I.rejected', 'rejected'],
+                ],
+                'default' => 'proposed',
             ],
         ],
         'votes' => [
@@ -126,7 +143,7 @@ return [
     ],
     'types' => [
         '0' => [
-            'showitem' => '--div--;Allgemein, hidden, title, description, status, votes, is_published,'
+            'showitem' => '--div--;Allgemein, hidden, title, slug, description, status, votes, is_published,'
                 . '--div--;Relations, proposer, speakers, room, track, time_slot, slides',
         ],
     ],

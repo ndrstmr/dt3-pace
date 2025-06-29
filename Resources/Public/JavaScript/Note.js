@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (!textarea) {
     return;
   }
+  const indicator = document.getElementById('note-saved');
   let timer;
   textarea.addEventListener('input', () => {
     clearTimeout(timer);
@@ -17,6 +18,13 @@ document.addEventListener('DOMContentLoaded', () => {
           session: textarea.dataset.session,
           note: textarea.value
         })
+      }).then(() => {
+        if (indicator) {
+          indicator.hidden = false;
+          setTimeout(() => {
+            indicator.hidden = true;
+          }, 2000);
+        }
       });
     }, 1500);
   });

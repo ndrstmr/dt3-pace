@@ -35,8 +35,11 @@ are not used::
     CREATE INDEX idx_session_status ON tx_dt3pace_domain_model_session (status);
     CREATE INDEX idx_session_time_slot ON tx_dt3pace_domain_model_session (time_slot);
     CREATE INDEX idx_session_room ON tx_dt3pace_domain_model_session (room);
+    CREATE UNIQUE INDEX uniq_session_slug ON tx_dt3pace_domain_model_session (slug);
     CREATE INDEX idx_vote_voter ON tx_dt3pace_domain_model_vote (voter);
     CREATE INDEX idx_vote_session ON tx_dt3pace_domain_model_vote (session);
+    ALTER TABLE tx_dt3pace_domain_model_vote
+        ADD CONSTRAINT uniq_session_voter UNIQUE (session_id, voter_id);
 
 Scheduler Permissions
 =====================
@@ -48,3 +51,32 @@ via the extension configuration::
     $GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['dt3_pace']['schedulerModuleAccess'] = 'user,group';
 
 Assign the module to specific backend groups after adjusting the access value.
+
+Editor Guide
+============
+
+Editors create and manage sessions and speakers using the backend modules
+"Sessions" and "Speakers". Schedule sessions by opening the "Scheduler" module
+and drag the records onto the desired time slots. Save the changes via the
+"Update" button.
+
+Developer Notes
+===============
+
+Install the dependencies with ``composer install`` and run the QA tools before
+submitting patches::
+
+    vendor/bin/phpstan analyse
+    vendor/bin/phpunit
+
+Extension Hooks
+===============
+
+Listen to ``AfterVoteAddedEvent`` or ``SessionStatusChangedEvent`` to trigger
+custom logic when votes are cast or session statuses change.
+
+Contribution Guide
+==================
+
+Pull requests are welcome. Follow PSR-12 coding style and make sure all tests
+pass before opening a PR.
