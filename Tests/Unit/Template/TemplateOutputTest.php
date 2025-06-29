@@ -11,12 +11,12 @@ class TemplateOutputTest extends TestCase
     public function testSessionDescriptionUsesHtmlFormatter(): void
     {
         $template = file_get_contents(__DIR__ . '/../../../Resources/Private/Templates/Session/Show.html');
-        $this->assertStringContainsString('<f:format.html>{session.description}</f:format.html>', $template);
+        $this->assertStringContainsString('<f:format.html>{session.description}</f:format.html>', (string) $template);
     }
 
     public function testSpeakerBioUsesHtmlFormatter(): void
     {
         $template = file_get_contents(__DIR__ . '/../../../Resources/Private/Templates/Speaker/Show.html');
-        $this->assertStringContainsString('<f:format.html>{speaker.bio}</f:format.html>', $template);
+        $this->assertStringContainsString('<f:format.html>{speaker.bio}</f:format.html>', (string) $template);
     }
 }
