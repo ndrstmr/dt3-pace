@@ -1,5 +1,10 @@
 .. include:: /Includes.rst.txt
 
+.. toctree::
+   :hidden:
+
+   adr/Index
+
 ============================
 DT3-PACE Documentation
 ============================
@@ -80,3 +85,10 @@ Contribution Guide
 
 Pull requests are welcome. Follow PSR-12 coding style and make sure all tests
 pass before opening a PR.
+
+Architectural Decisions
+=======================
+
+This section documents significant architectural decisions made during the development of the DT3-PACE extension.
+
+`View the Architecture Decision Records (ADRs) <adr/Index.html>`_
