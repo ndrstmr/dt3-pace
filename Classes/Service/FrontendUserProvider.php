@@ -20,6 +20,8 @@ class FrontendUserProvider
             return null;
         }
 
-        return $this->frontendUserRepository->findByUid($uid);
+        /** @var FrontendUser|null $frontendUser */
+        $frontendUser = $this->frontendUserRepository->findByUid($uid);
+        return $frontendUser;
     }
 }

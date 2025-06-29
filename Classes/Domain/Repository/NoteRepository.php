@@ -11,7 +11,7 @@ use TYPO3\CMS\Extbase\Persistence\Repository;
 
 class NoteRepository extends Repository
 {
-    public function findOneByUserAndSession(FrontendUser $user, Session $session): ?object
+    public function findOneByUserAndSession(FrontendUser $user, Session $session): ?Note
     {
         $query = $this->createQuery();
         $query->matching(
@@ -20,7 +20,9 @@ class NoteRepository extends Repository
                 $query->equals('session', $session->getUid())
             )
         );
-        return $query->execute()->getFirst();
+        /** @var Note|null $note */
+        $note = $query->execute()->getFirst();
+        return $note;
     }
 
     public function findByUser(FrontendUser $user): array

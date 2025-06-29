@@ -12,14 +12,7 @@ use Ndrstmr\Dt3Pace\Domain\Model\FrontendUser;
  * Represents a single vote for a session.
  */
 #[ORM\Entity]
-#[ORM\Table(
-    name: 'tx_dt3pace_domain_model_vote',
-    uniqueConstraints: [new ORM\UniqueConstraint(name: 'session_voter_unique', columns: ['session', 'voter'])],
-    indexes: [
-        new ORM\Index(columns: ['voter']),
-        new ORM\Index(columns: ['session']),
-    ]
-)]
+#[ORM\Table(name: 'tx_dt3pace_domain_model_vote')]
 class Vote extends AbstractEntity
 {
     #[ORM\ManyToOne(targetEntity: Session::class)]

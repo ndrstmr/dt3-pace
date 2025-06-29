@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  # Job 1: Führt alle Qualitäts-Checks und Tests aus
+  quality-and-tests:
+    name: PHP ${{ matrix.php-version }} Quality Checks
+    runs-on: ubuntu-latest
+    strategy:
+      # Teste immer gegen mehrere PHP-Versionen
+      matrix:
+        php-version: ['8.3']
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-version }}
+
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress
+
+      - name: Audit Composer dependencies
+        run: composer audit
+
+      - name: Run phpstan
+        run: vendor/bin/phpstan analyse -c phpstan.neon.dist
+        
+      - name: Run phpunit
+        run: vendor/bin/phpunit -c phpunit.xml.dist

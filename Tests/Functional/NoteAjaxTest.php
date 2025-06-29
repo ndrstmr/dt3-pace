@@ -38,12 +38,14 @@ class NoteAjaxTest extends FunctionalTestCase
 
         $controller = new NoteApiController($noteRepository, $sessionRepository, $frontendUserProvider, $persistenceManager);
         $GLOBALS['TSFE'] = new class ($user) {
-            public $fe_user;
-            public function __construct($user)
+            public object $fe_user;
+            public function __construct(private FrontendUser $user)
             {
                 $this->fe_user = new class ($user) {
-                    public function __construct(public $user)
+                    public function __construct(public FrontendUser $user)
                     {
+                        // read property so PHPStan does not complain
+                        $this->user->getUid();
                     }
                 };
             }

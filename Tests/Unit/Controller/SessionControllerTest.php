@@ -13,6 +13,10 @@ use Ndrstmr\Dt3Pace\Domain\Repository\SessionRepository;
 use Ndrstmr\Dt3Pace\Domain\Repository\VoteRepository;
 use PHPUnit\Framework\TestCase;
 use TYPO3\CMS\Core\Http\JsonResponse;
+use TYPO3\CMS\Core\Context\Context;
+use TYPO3\CMS\Core\Context\SecurityAspect;
+use TYPO3\CMS\Core\Security\RequestToken;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use Ndrstmr\Dt3Pace\Domain\Model\FrontendUser;
 use Ndrstmr\Dt3Pace\Service\FrontendUserProvider;
 use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
@@ -22,6 +26,9 @@ use TYPO3\CMS\Core\Http\JsonResponse as CoreJsonResponse;
 
 class TestableSessionProposalController extends SessionProposalController
 {
+    /**
+     * @param array<string, mixed>|null $arguments
+     */
     protected function redirect(
         ?string $actionName,
         ?string $controllerName = null,
@@ -38,6 +45,9 @@ class TestableSessionProposalController extends SessionProposalController
 
 class TestableSessionVoteController extends SessionVoteController
 {
+    /**
+     * @param array<string, mixed>|null $arguments
+     */
     protected function redirect(
         ?string $actionName,
         ?string $controllerName = null,
@@ -53,6 +63,21 @@ class TestableSessionVoteController extends SessionVoteController
 
 class SessionControllerTest extends TestCase
 {
+    private Context $context;
+
+    protected function setUp(): void
+    {
+        $this->context = new Context();
+        SecurityAspect::provideIn($this->context)
+            ->setReceivedRequestToken(RequestToken::create('test'));
+        GeneralUtility::setSingletonInstance(Context::class, $this->context);
+    }
+
+    protected function tearDown(): void
+    {
+        GeneralUtility::removeSingletonInstance(Context::class, $this->context);
+    }
+
     public function testCreateActionAddsSession(): void
     {
         $session = new Session();
@@ -97,7 +122,8 @@ class SessionControllerTest extends TestCase
         $response = $controller->voteAction(5);
 
         $this->assertInstanceOf(JsonResponse::class, $response);
-        $payload = json_decode((string)$response->getBody(), true);
+        /** @var array{success: bool, votes: int} $payload */
+        $payload = json_decode((string)$response->getBody(), true, 512, JSON_THROW_ON_ERROR);
         $this->assertTrue($payload['success']);
         $this->assertSame(1, $payload['votes']);
     }
