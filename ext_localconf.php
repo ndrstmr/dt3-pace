@@ -48,22 +48,9 @@ ExtensionUtility::configurePlugin('Ndrstmr.Dt3Pace', 'Eventsummary', [
     NoteController::class => 'summary'
 ], []);
 
-$GLOBALS['TYPO3_CONF_VARS']['FE']['ajaxRoutes']['dt3pace_session_vote'] = [
-    'path' => '/dt3pace/session/vote',
-    'target' => SessionVoteController::class . '::voteAction',
-    'access' => 'public',
-    'methods' => ['POST'],
-];
-
-$GLOBALS['TYPO3_CONF_VARS']['FE']['ajaxRoutes']['dt3pace_sessions_json'] = [
-    'path' => '/dt3pace/sessions/json',
-    'target' => SessionApiController::class . '::listJsonAction',
-    'access' => 'public',
-];
-
-$GLOBALS['TYPO3_CONF_VARS']['FE']['ajaxRoutes']['dt3pace_note_update'] = [
-    'path' => '/dt3pace/note/update',
-    'target' => NoteApiController::class . '::updateAction',
-    'access' => 'public',
-    'methods' => ['POST'],
-];
+foreach (require __DIR__ . '/Configuration/Frontend/AjaxRoutes.php' as $identifier => $config) {
+    $GLOBALS['TYPO3_CONF_VARS']['FE']['ajaxRoutes'][$identifier] = $config + [
+        'access' => \TYPO3\CMS\Frontend\Middleware\FrontendAjaxMiddleware::class,
+        'csrf' => true,
+    ];
+}
