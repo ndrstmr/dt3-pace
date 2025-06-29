@@ -13,6 +13,10 @@ use Ndrstmr\Dt3Pace\Domain\Repository\SessionRepository;
 use Ndrstmr\Dt3Pace\Domain\Repository\VoteRepository;
 use PHPUnit\Framework\TestCase;
 use TYPO3\CMS\Core\Http\JsonResponse;
+use TYPO3\CMS\Core\Context\Context;
+use TYPO3\CMS\Core\Context\SecurityAspect;
+use TYPO3\CMS\Core\Security\RequestToken;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use Ndrstmr\Dt3Pace\Domain\Model\FrontendUser;
 use Ndrstmr\Dt3Pace\Service\FrontendUserProvider;
 use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
@@ -59,6 +63,21 @@ class TestableSessionVoteController extends SessionVoteController
 
 class SessionControllerTest extends TestCase
 {
+    private Context $context;
+
+    protected function setUp(): void
+    {
+        $this->context = new Context();
+        SecurityAspect::provideIn($this->context)
+            ->setReceivedRequestToken(RequestToken::create('test'));
+        GeneralUtility::setSingletonInstance(Context::class, $this->context);
+    }
+
+    protected function tearDown(): void
+    {
+        GeneralUtility::removeSingletonInstance(Context::class, $this->context);
+    }
+
     public function testCreateActionAddsSession(): void
     {
         $session = new Session();
