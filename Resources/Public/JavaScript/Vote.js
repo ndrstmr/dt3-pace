@@ -3,7 +3,10 @@ document.addEventListener('DOMContentLoaded', () => {
     btn.addEventListener('click', () => {
       fetch(TYPO3.settings.ajaxUrls['dt3pace_session_vote'], {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          'X-TYPO3-RequestToken': TYPO3.settings.security.csrfToken
+        },
         body: JSON.stringify({ session: btn.dataset.session })
       }).then(r => r.json()).then(data => {
         if (data.success) {

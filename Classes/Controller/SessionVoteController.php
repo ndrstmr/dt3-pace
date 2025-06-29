@@ -9,6 +9,10 @@ use Ndrstmr\Dt3Pace\Domain\Repository\SessionRepository;
 use Ndrstmr\Dt3Pace\Domain\Repository\VoteRepository;
 use Ndrstmr\Dt3Pace\Service\FrontendUserProvider;
 use Ndrstmr\Dt3Pace\Event\AfterVoteAddedEvent;
+use TYPO3\CMS\Core\Context\Context;
+use TYPO3\CMS\Core\Context\SecurityAspect;
+use TYPO3\CMS\Core\Security\RequestToken;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Http\JsonResponse;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
@@ -28,6 +32,11 @@ class SessionVoteController extends ActionController
 
     public function voteAction(int $session): JsonResponse
     {
+        $context = GeneralUtility::makeInstance(Context::class);
+        $securityAspect = SecurityAspect::provideIn($context);
+        if (!$securityAspect->getReceivedRequestToken() instanceof RequestToken) {
+            return new JsonResponse(['success' => false], 403);
+        }
         $user = $this->frontendUserProvider->getCurrentFrontendUser();
         if ($user === null) {
             return new JsonResponse(['success' => false], 403);
