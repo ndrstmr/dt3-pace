@@ -6,7 +6,7 @@ namespace Ndrstmr\Dt3Pace\Controller;
 
 use Ndrstmr\Dt3Pace\Domain\Model\Session;
 use Ndrstmr\Dt3Pace\Domain\Model\SessionStatus;
-use Ndrstmr\Dt3Pace\Domain\Repository\FrontendUserRepository;
+use Ndrstmr\Dt3Pace\Service\FrontendUserProvider;
 use Ndrstmr\Dt3Pace\Domain\Repository\SessionRepository;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
@@ -15,21 +15,21 @@ class SessionProposalController extends ActionController
 {
     public function __construct(
         private readonly SessionRepository $sessionRepository,
-        private readonly FrontendUserRepository $frontendUserRepository,
+        private readonly FrontendUserProvider $frontendUserProvider,
         private readonly PersistenceManager $persistenceManager
     ) {
     }
 
     public function newAction(): void
     {
-        if ($this->getCurrentFrontendUser() === null) {
+        if ($this->frontendUserProvider->getCurrentFrontendUser() === null) {
             throw new \RuntimeException('Login required', 166832);
         }
     }
 
     public function createAction(Session $newSession): void
     {
-        $user = $this->getCurrentFrontendUser();
+        $user = $this->frontendUserProvider->getCurrentFrontendUser();
         if ($user === null) {
             throw new \RuntimeException('Login required', 166833);
         }
@@ -45,12 +45,4 @@ class SessionProposalController extends ActionController
         $this->view->assign('sessions', $this->sessionRepository->findProposed());
     }
 
-    private function getCurrentFrontendUser(): ?\Ndrstmr\Dt3Pace\Domain\Model\FrontendUser
-    {
-        $uid = (int)($GLOBALS['TSFE']->fe_user->user['uid'] ?? 0);
-        if ($uid === 0) {
-            return null;
-        }
-        return $this->frontendUserRepository->findByUid($uid);
-    }
 }
