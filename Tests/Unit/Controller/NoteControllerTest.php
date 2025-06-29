@@ -14,10 +14,16 @@ use Ndrstmr\Dt3Pace\Domain\Repository\FrontendUserRepository;
 use Ndrstmr\Dt3Pace\Service\FrontendUserProvider;
 use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
 use TYPO3\CMS\Core\Http\JsonResponse;
+use TYPO3\CMS\Core\Context\Context;
+use TYPO3\CMS\Core\Context\SecurityAspect;
+use TYPO3\CMS\Core\Security\RequestToken;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use PHPUnit\Framework\TestCase;
 
 class NoteControllerTest extends TestCase
 {
+    private Context $context;
+
     protected function setUp(): void
     {
         $GLOBALS['TSFE'] = new class () {
@@ -30,6 +36,17 @@ class NoteControllerTest extends TestCase
                 };
             }
         };
+
+        $this->context = new Context();
+        $securityAspect = SecurityAspect::provideIn($this->context);
+        $securityAspect->setReceivedRequestToken(RequestToken::create('test'));
+        GeneralUtility::setSingletonInstance(Context::class, $this->context);
+    }
+
+    protected function tearDown(): void
+    {
+        GeneralUtility::removeSingletonInstance(Context::class, $this->context);
+        unset($GLOBALS['TSFE']);
     }
 
     public function testUpdateActionCreatesNote(): void

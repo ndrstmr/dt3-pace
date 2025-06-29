@@ -6,6 +6,7 @@ namespace Ndrstmr\Dt3Pace\Tests\Unit;
 
 use Ndrstmr\Dt3Pace\Controller\SchedulerController;
 use Ndrstmr\Dt3Pace\Domain\Model\Session;
+use Ndrstmr\Dt3Pace\Domain\Model\SessionStatus;
 use Ndrstmr\Dt3Pace\Domain\Repository\RoomRepository;
 use Ndrstmr\Dt3Pace\Domain\Repository\SessionRepository;
 use Ndrstmr\Dt3Pace\Domain\Repository\TimeSlotRepository;
@@ -19,6 +20,7 @@ class SchedulerControllerTest extends TestCase
     public function testUpdateSessionSlotActionUpdatesSession(): void
     {
         $session = $this->createMock(Session::class);
+        $session->method('getStatus')->willReturn(SessionStatus::PROPOSED);
         $session->expects($this->once())->method('setRoom');
         $session->expects($this->once())->method('setTimeSlot');
         $session->expects($this->once())->method('setStatus');
