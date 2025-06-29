@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.vote').forEach(btn => {
     btn.addEventListener('click', () => {
+      btn.disabled = true;
       fetch(TYPO3.settings.ajaxUrls['dt3pace_session_vote'], {
         method: 'POST',
         headers: {
@@ -10,8 +11,15 @@ document.addEventListener('DOMContentLoaded', () => {
         body: JSON.stringify({ session: btn.dataset.session })
       }).then(r => r.json()).then(data => {
         if (data.success) {
-          btn.parentElement.innerHTML = `${btn.parentElement.textContent.split(' ')[0]} - ${data.votes} votes`;
+          const li = btn.closest('li');
+          li.querySelector('.votes').textContent = data.votes;
+          li.querySelector('.vote-message').textContent = 'Thanks for voting!';
+          li.querySelector('.vote-message').hidden = false;
+        } else {
+          btn.disabled = false;
         }
+      }).catch(() => {
+        btn.disabled = false;
       });
     });
   });

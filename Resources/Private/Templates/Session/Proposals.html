@@ -3,8 +3,11 @@
   <ul>
     <f:for each="{sessions}" as="session">
       <li>
-        {session.title} - {session.votes} votes
+        <span class="title">{session.title}</span> -
+        <span class="votes" data-votes="{session.votes}">{session.votes}</span>
+        votes
         <button class="vote" data-session="{session.uid}">Vote</button>
+        <span class="vote-message" hidden></span>
       </li>
     </f:for>
   </ul>
