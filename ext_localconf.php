@@ -8,6 +8,7 @@ use Ndrstmr\Dt3Pace\Controller\SessionVoteController;
 use Ndrstmr\Dt3Pace\Controller\SessionApiController;
 use Ndrstmr\Dt3Pace\Controller\SpeakerController;
 use Ndrstmr\Dt3Pace\Controller\NoteController;
+use Ndrstmr\Dt3Pace\Controller\NoteApiController;
 use TYPO3\CMS\Extbase\Utility\ExtensionUtility;
 
 defined('TYPO3') or die();
@@ -62,7 +63,7 @@ $GLOBALS['TYPO3_CONF_VARS']['FE']['ajaxRoutes']['dt3pace_sessions_json'] = [
 
 $GLOBALS['TYPO3_CONF_VARS']['FE']['ajaxRoutes']['dt3pace_note_update'] = [
     'path' => '/dt3pace/note/update',
-    'target' => NoteController::class . '::updateAction',
+    'target' => NoteApiController::class . '::updateAction',
     'access' => 'public',
     'methods' => ['POST'],
 ];

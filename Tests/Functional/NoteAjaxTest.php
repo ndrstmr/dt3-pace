@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Ndrstmr\Dt3Pace\Tests\Functional;
 
-use Ndrstmr\Dt3Pace\Controller\NoteController;
+use Ndrstmr\Dt3Pace\Controller\NoteApiController;
 use Ndrstmr\Dt3Pace\Domain\Model\Session;
 use Ndrstmr\Dt3Pace\Domain\Model\FrontendUser;
 use Ndrstmr\Dt3Pace\Domain\Repository\NoteRepository;
@@ -36,7 +36,7 @@ class NoteAjaxTest extends FunctionalTestCase
         $frontendUserRepository->method('findByUid')->willReturn($user);
         $noteRepository->method('findOneByUserAndSession')->willReturn(null);
 
-        $controller = new NoteController($noteRepository, $sessionRepository, $frontendUserProvider, $persistenceManager);
+        $controller = new NoteApiController($noteRepository, $sessionRepository, $frontendUserProvider, $persistenceManager);
         $GLOBALS['TSFE'] = new class ($user) {
             public $fe_user;
             public function __construct($user)

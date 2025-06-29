@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Ndrstmr\Dt3Pace\Tests\Unit\Controller;
 
-use Ndrstmr\Dt3Pace\Controller\NoteController;
+use Ndrstmr\Dt3Pace\Controller\NoteApiController;
 use Ndrstmr\Dt3Pace\Domain\Model\Note;
 use Ndrstmr\Dt3Pace\Domain\Model\Session;
 use Ndrstmr\Dt3Pace\Domain\Model\FrontendUser;
@@ -51,7 +51,7 @@ class NoteControllerTest extends TestCase
         $noteRepository->expects($this->once())->method('add')->with($this->isInstanceOf(Note::class));
         $persistenceManager->expects($this->once())->method('persistAll');
 
-        $controller = new NoteController($noteRepository, $sessionRepository, $frontendUserProvider, $persistenceManager);
+        $controller = new NoteApiController($noteRepository, $sessionRepository, $frontendUserProvider, $persistenceManager);
         $response = $controller->updateAction(5, 'text');
 
         $this->assertInstanceOf(JsonResponse::class, $response);
