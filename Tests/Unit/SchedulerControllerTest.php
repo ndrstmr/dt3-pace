@@ -12,6 +12,7 @@ use Ndrstmr\Dt3Pace\Domain\Repository\TimeSlotRepository;
 use PHPUnit\Framework\TestCase;
 use TYPO3\CMS\Core\Http\JsonResponse;
 use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
+use Psr\EventDispatcher\EventDispatcherInterface;
 
 class SchedulerControllerTest extends TestCase
 {
@@ -28,6 +29,7 @@ class SchedulerControllerTest extends TestCase
         $room = new \Ndrstmr\Dt3Pace\Domain\Model\Room();
         $slot = new \Ndrstmr\Dt3Pace\Domain\Model\TimeSlot();
         $persistenceManager = $this->createMock(PersistenceManager::class);
+        $eventDispatcher = $this->createMock(EventDispatcherInterface::class);
 
         $sessionRepository->method('findByUid')->willReturn($session);
         $roomRepository->method('findByUid')->willReturn($room);
@@ -36,7 +38,7 @@ class SchedulerControllerTest extends TestCase
         $sessionRepository->expects($this->once())->method('update')->with($session);
         $persistenceManager->expects($this->once())->method('persistAll');
 
-        $controller = new SchedulerController($sessionRepository, $roomRepository, $slotRepository, $persistenceManager);
+        $controller = new SchedulerController($sessionRepository, $roomRepository, $slotRepository, $persistenceManager, $eventDispatcher);
         $response = $controller->updateSessionSlotAction(1, 2, 3);
 
         $this->assertInstanceOf(JsonResponse::class, $response);

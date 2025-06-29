@@ -17,6 +17,7 @@ use TYPO3\CMS\Core\Http\JsonResponse;
 use Ndrstmr\Dt3Pace\Domain\Model\FrontendUser;
 use Ndrstmr\Dt3Pace\Domain\Repository\FrontendUserRepository;
 use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
+use Psr\EventDispatcher\EventDispatcherInterface;
 use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Core\Http\JsonResponse as CoreJsonResponse;
 
@@ -41,11 +42,12 @@ class SessionControllerTest extends TestCase
     protected function setUp(): void
     {
         $GLOBALS['TSFE'] = new class () {
-            public $fe_user;
+            public object $fe_user;
             public function __construct()
             {
                 $this->fe_user = new class () {
-                    public $user = ['uid' => 1];
+                    /** @var array{uid:int} */
+                    public array $user = ['uid' => 1];
                 };
             }
         };
@@ -60,6 +62,10 @@ class SessionControllerTest extends TestCase
         $slotRepository = $this->createMock(TimeSlotRepository::class);
         $frontendUserRepository = $this->createMock(FrontendUserRepository::class);
         $persistenceManager = $this->createMock(PersistenceManager::class);
+        $noteRepository = $this->createMock(\Ndrstmr\Dt3Pace\Domain\Repository\NoteRepository::class);
+        $eventDispatcher = $this->createMock(EventDispatcherInterface::class);
+        $noteRepository = $this->createMock(\Ndrstmr\Dt3Pace\Domain\Repository\NoteRepository::class);
+        $eventDispatcher = $this->createMock(EventDispatcherInterface::class);
 
         $user = new FrontendUser();
         $frontendUserRepository->method('findByUid')->willReturn($user);
@@ -67,7 +73,7 @@ class SessionControllerTest extends TestCase
         $sessionRepository->expects($this->once())->method('add')->with($session);
         $persistenceManager->expects($this->once())->method('persistAll');
 
-        $controller = new TestableSessionController($sessionRepository, $voteRepository, $roomRepository, $slotRepository, $frontendUserRepository, $persistenceManager);
+        $controller = new TestableSessionController($sessionRepository, $voteRepository, $roomRepository, $slotRepository, $frontendUserRepository, $persistenceManager, $noteRepository, $eventDispatcher);
         $controller->createAction($session);
 
         $this->assertSame(SessionStatus::PROPOSED, $session->getStatus());
@@ -84,6 +90,8 @@ class SessionControllerTest extends TestCase
         $slotRepository = $this->createMock(TimeSlotRepository::class);
         $frontendUserRepository = $this->createMock(FrontendUserRepository::class);
         $persistenceManager = $this->createMock(PersistenceManager::class);
+        $noteRepository = $this->createMock(\Ndrstmr\Dt3Pace\Domain\Repository\NoteRepository::class);
+        $eventDispatcher = $this->createMock(EventDispatcherInterface::class);
 
         $user = new FrontendUser();
         $user->_setProperty('uid', 1);
@@ -95,7 +103,7 @@ class SessionControllerTest extends TestCase
         $sessionRepository->expects($this->once())->method('update')->with($session);
         $persistenceManager->expects($this->once())->method('persistAll');
 
-        $controller = new TestableSessionController($sessionRepository, $voteRepository, $roomRepository, $slotRepository, $frontendUserRepository, $persistenceManager);
+        $controller = new TestableSessionController($sessionRepository, $voteRepository, $roomRepository, $slotRepository, $frontendUserRepository, $persistenceManager, $noteRepository, $eventDispatcher);
         $response = $controller->voteAction(5);
 
         $this->assertInstanceOf(JsonResponse::class, $response);
