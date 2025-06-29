@@ -18,6 +18,7 @@ use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Context\SecurityAspect;
 use TYPO3\CMS\Core\Security\RequestToken;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use Psr\Log\NullLogger;
 use PHPUnit\Framework\TestCase;
 
 class NoteControllerTest extends TestCase
@@ -28,6 +29,7 @@ class NoteControllerTest extends TestCase
     {
         $this->context = new Context();
         $frontendUser = new \TYPO3\CMS\Frontend\Authentication\FrontendUserAuthentication();
+        $frontendUser->setLogger(new NullLogger());
         $frontendUser->user = ['uid' => 1];
         $this->context->setAspect('frontend.user', $frontendUser->createUserAspect());
         $securityAspect = SecurityAspect::provideIn($this->context);

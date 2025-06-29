@@ -16,6 +16,7 @@ use TYPO3\CMS\Core\Context\SecurityAspect;
 use TYPO3\CMS\Core\Security\RequestToken;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Frontend\Authentication\FrontendUserAuthentication;
+use Psr\Log\NullLogger;
 use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
@@ -30,6 +31,7 @@ class NoteAjaxTest extends FunctionalTestCase
         $frontendUserRepository = $this->createMock(FrontendUserRepository::class);
         $context = new Context();
         $frontendUserAuth = new FrontendUserAuthentication();
+        $frontendUserAuth->setLogger(new NullLogger());
         $frontendUserAuth->user = ['uid' => 1];
         $context->setAspect('frontend.user', $frontendUserAuth->createUserAspect());
         $securityAspect = SecurityAspect::provideIn($context);

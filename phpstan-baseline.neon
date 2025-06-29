@@ -221,11 +221,6 @@ parameters:
 			path: Classes/Domain/Repository/VoteRepository.php
 
 		-
-			message: "#^Property class@anonymous/Tests/Functional/NoteAjaxTest\\.php\\:40\\:\\:\\$user is never read, only written\\.$#"
-			count: 1
-			path: Tests/Functional/NoteAjaxTest.php
-
-		-
 			message: "#^Cannot access offset 'success' on mixed\\.$#"
 			count: 1
 			path: Tests/Unit/Controller/NoteControllerTest.php
