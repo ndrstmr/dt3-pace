@@ -216,7 +216,7 @@ class SessionControllerTest extends TestCase
 
         $voteRepository->expects($this->once())->method('add');
         $sessionRepository->expects($this->once())->method('update')->with($session);
-        $driverException = new class('error') extends \Doctrine\DBAL\Driver\AbstractException {
+        $driverException = new class ('error') extends \Doctrine\DBAL\Driver\AbstractException {
         };
         $persistenceManager->method('persistAll')->willThrowException(new UniqueConstraintViolationException($driverException, null));
 
@@ -253,7 +253,7 @@ class SessionControllerTest extends TestCase
         $persistenceManager->method('persistAll')->willReturnCallback(static function () use (&$callCount) {
             ++$callCount;
             if ($callCount === 2) {
-                $driverException = new class('error') extends \Doctrine\DBAL\Driver\AbstractException {
+                $driverException = new class ('error') extends \Doctrine\DBAL\Driver\AbstractException {
                 };
                 throw new UniqueConstraintViolationException($driverException, null);
             }
