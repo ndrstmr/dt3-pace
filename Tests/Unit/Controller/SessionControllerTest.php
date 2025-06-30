@@ -95,7 +95,9 @@ class SessionControllerTest extends TestCase
         $this->mockConnection = $this->createMock(Connection::class);
 
         $this->connectionPool = new class ($this->mockConnection) extends ConnectionPool implements \TYPO3\CMS\Core\SingletonInterface {
-            public function __construct(private Connection $connection) {}
+            public function __construct(private Connection $connection)
+            {
+            }
             public function getConnectionForTable(string $tableName): Connection
             {
                 return $this->connection;
