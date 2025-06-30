@@ -25,6 +25,7 @@ use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Core\Http\JsonResponse as CoreJsonResponse;
 use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 use TYPO3\CMS\Core\Database\ConnectionPool;
+use TYPO3\CMS\Core\Database\Connection;
 
 class TestableSessionProposalController extends SessionProposalController
 {
@@ -44,15 +45,15 @@ class TestableSessionProposalController extends SessionProposalController
         return new CoreJsonResponse(null, $statusCode);
     }
 
-    protected function redirectToUri(string $uri, int $statusCode = 303): ResponseInterface
+    protected function redirectToUri(string|\Psr\Http\Message\UriInterface $uri, $_ = null, int $statusCode = 303): ResponseInterface
     {
         return new CoreJsonResponse(null, $statusCode);
     }
 
-    protected function addFlashMessage(
+    public function addFlashMessage(
         string $message,
         string $title = '',
-        int $severity = self::OK,
+        \TYPO3\CMS\Core\Type\ContextualFeedbackSeverity $severity = \TYPO3\CMS\Core\Type\ContextualFeedbackSeverity::OK,
         bool $storeInSession = true
     ): void {
         // no-op in tests
@@ -80,8 +81,9 @@ class TestableSessionVoteController extends SessionVoteController
 class SessionControllerTest extends TestCase
 {
     private Context $context;
+    /** @var ConnectionPool&\TYPO3\CMS\Core\SingletonInterface */
     private ConnectionPool $connectionPool;
-    private object $mockConnection;
+    private Connection $mockConnection;
 
     protected function setUp(): void
     {
@@ -90,22 +92,19 @@ class SessionControllerTest extends TestCase
             ->setReceivedRequestToken(RequestToken::create('test'));
         GeneralUtility::setSingletonInstance(Context::class, $this->context);
 
-        $this->mockConnection = new class () {
-            public function beginTransaction(): void
-            {
-            }
+        $this->mockConnection = $this->createMock(Connection::class);
 
-            public function commit(): void
+        $this->connectionPool = new class ($this->mockConnection) extends ConnectionPool implements \TYPO3\CMS\Core\SingletonInterface {
+            public function __construct(private Connection $connection) {}
+            public function getConnectionForTable(string $tableName): Connection
             {
+                return $this->connection;
             }
-
-            public function rollBack(): void
+            public function getConnectionByName(string $connectionName): Connection
             {
+                return $this->connection;
             }
         };
-
-        $this->connectionPool = $this->createMock(ConnectionPool::class);
-        $this->connectionPool->method('getConnectionForTable')->willReturn($this->mockConnection);
         GeneralUtility::setSingletonInstance(ConnectionPool::class, $this->connectionPool);
     }
 
