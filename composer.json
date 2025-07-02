@@ -25,6 +25,11 @@
             "Ndrstmr\\Dt3Pace\\Tests\\": "Tests/"
         }
     },
+    "extra": {
+        "typo3/cms": {
+            "extension-key": "dt3_pace"
+        }
+    },
     "config": {
         "platform": {
             "php": "8.3"
