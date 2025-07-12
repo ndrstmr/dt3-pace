@@ -17,6 +17,8 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Http\JsonResponse;
 use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
 use Psr\EventDispatcher\EventDispatcherInterface;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
 
 class SessionVoteController extends BaseAjaxController
 {
@@ -65,6 +67,20 @@ class SessionVoteController extends BaseAjaxController
         }
 
         return new JsonResponse(['success' => true, 'votes' => $sessionObj->getVotes()]);
+    }
+
+    /**
+     * eID-compatible method for processing vote requests
+     */
+    public function processVoteRequest(ServerRequestInterface $request): ResponseInterface
+    {
+        $sessionId = (int)($request->getQueryParams()['session'] ?? $request->getParsedBody()['session'] ?? 0);
+        
+        if ($sessionId === 0) {
+            return new JsonResponse(['success' => false, 'message' => 'Missing session parameter'], 400);
+        }
+        
+        return $this->voteAction($sessionId);
     }
 
 }

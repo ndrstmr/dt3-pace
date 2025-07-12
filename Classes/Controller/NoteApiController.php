@@ -12,6 +12,8 @@ use Ndrstmr\Dt3Pace\Service\FrontendUserProvider;
 use TYPO3\CMS\Core\Http\JsonResponse;
 use Ndrstmr\Dt3Pace\Controller\BaseAjaxController;
 use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
 
 class NoteApiController extends BaseAjaxController
 {
@@ -46,5 +48,20 @@ class NoteApiController extends BaseAjaxController
         $noteObj->setNoteText($note);
         $this->persistenceManager->persistAll();
         return new JsonResponse(['success' => true]);
+    }
+
+    /**
+     * eID-compatible method for processing note update requests
+     */
+    public function processUpdateRequest(ServerRequestInterface $request): ResponseInterface
+    {
+        $sessionId = (int)($request->getQueryParams()['session'] ?? $request->getParsedBody()['session'] ?? 0);
+        $note = (string)($request->getQueryParams()['note'] ?? $request->getParsedBody()['note'] ?? '');
+        
+        if ($sessionId === 0) {
+            return new JsonResponse(['success' => false, 'message' => 'Missing session parameter'], 400);
+        }
+        
+        return $this->updateAction($sessionId, $note);
     }
 }

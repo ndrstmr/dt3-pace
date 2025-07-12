@@ -7,6 +7,8 @@ namespace Ndrstmr\Dt3Pace\Controller;
 use Ndrstmr\Dt3Pace\Domain\Repository\SessionRepository;
 use TYPO3\CMS\Core\Http\JsonResponse;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
 
 class SessionApiController extends ActionController
 {
@@ -28,5 +30,13 @@ class SessionApiController extends ActionController
         }
 
         return new JsonResponse($data);
+    }
+
+    /**
+     * eID-compatible method for processing JSON requests
+     */
+    public function processJsonRequest(ServerRequestInterface $request): ResponseInterface
+    {
+        return $this->listJsonAction();
     }
 }

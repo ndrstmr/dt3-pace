@@ -48,9 +48,13 @@ ExtensionUtility::configurePlugin('Ndrstmr.Dt3Pace', 'Eventsummary', [
     NoteController::class => 'summary'
 ], []);
 
-foreach (require __DIR__ . '/Configuration/Frontend/AjaxRoutes.php' as $identifier => $config) {
-    $GLOBALS['TYPO3_CONF_VARS']['FE']['ajaxRoutes'][$identifier] = $config + [
-        'access' => \TYPO3\CMS\Frontend\Middleware\FrontendAjaxMiddleware::class,
-        'csrf' => true,
-    ];
-}
+// Modern eID-based AJAX routes for TYPO3 v13
+$GLOBALS['TYPO3_CONF_VARS']['FE']['eID_include']['dt3pace_session_vote'] = 
+    \Ndrstmr\Dt3Pace\Controller\SessionVoteController::class . '::processVoteRequest';
+
+$GLOBALS['TYPO3_CONF_VARS']['FE']['eID_include']['dt3pace_sessions_json'] = 
+    \Ndrstmr\Dt3Pace\Controller\SessionApiController::class . '::processJsonRequest';
+
+$GLOBALS['TYPO3_CONF_VARS']['FE']['eID_include']['dt3pace_note_update'] = 
+    \Ndrstmr\Dt3Pace\Controller\NoteApiController::class . '::processUpdateRequest';
+
