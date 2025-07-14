@@ -74,12 +74,14 @@ class SessionVoteController extends BaseAjaxController
      */
     public function processVoteRequest(ServerRequestInterface $request): ResponseInterface
     {
-        $sessionId = (int)($request->getQueryParams()['session'] ?? $request->getParsedBody()['session'] ?? 0);
-        
+        $parsedBody = $request->getParsedBody();
+        $parsedBody = \is_array($parsedBody) ? $parsedBody : [];
+        $sessionId = (int)($request->getQueryParams()['session'] ?? $parsedBody['session'] ?? 0);
+
         if ($sessionId === 0) {
             return new JsonResponse(['success' => false, 'message' => 'Missing session parameter'], 400);
         }
-        
+
         return $this->voteAction($sessionId);
     }
 

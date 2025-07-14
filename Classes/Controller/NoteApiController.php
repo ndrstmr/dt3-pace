@@ -55,13 +55,15 @@ class NoteApiController extends BaseAjaxController
      */
     public function processUpdateRequest(ServerRequestInterface $request): ResponseInterface
     {
-        $sessionId = (int)($request->getQueryParams()['session'] ?? $request->getParsedBody()['session'] ?? 0);
-        $note = (string)($request->getQueryParams()['note'] ?? $request->getParsedBody()['note'] ?? '');
-        
+        $parsedBody = $request->getParsedBody();
+        $parsedBody = \is_array($parsedBody) ? $parsedBody : [];
+        $sessionId = (int)($request->getQueryParams()['session'] ?? $parsedBody['session'] ?? 0);
+        $note = (string)($request->getQueryParams()['note'] ?? $parsedBody['note'] ?? '');
+
         if ($sessionId === 0) {
             return new JsonResponse(['success' => false, 'message' => 'Missing session parameter'], 400);
         }
-        
+
         return $this->updateAction($sessionId, $note);
     }
 }
